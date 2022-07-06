@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+nix copy \
+    --to 's3://nix-cache-quyo-net?profile=nix-cache&region=eu-central-1' \
+    $(nix build --no-link --print-out-paths .#${1})

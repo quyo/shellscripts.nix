@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# set -e
+
+nix run nixpkgs#symlinks -- -dr /nix/var/nix/gcroots/ | egrep -v ^absolute:
+
+nix-collect-garbage -d

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+nix build --json .#$1 \
+  | jq -r '.[].outputs | to_entries[].value' \
+  | cachix push quyo-public

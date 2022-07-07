@@ -11,6 +11,7 @@
       name = "shellscripts-flake";
       config = { };
       overlay = ./overlay.nix;
+      systems = [ "x86_64-linux" ];
     };
 
 }

@@ -2,6 +2,6 @@
 
 set -e
 
-nix build --json .#$1 \
+nix build --json $1 \
   | jq -r '.[].outputs | to_entries[].value' \
   | cachix push quyo-public

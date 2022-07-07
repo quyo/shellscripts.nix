@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+nix build --eval-store auto --store ssh-ng://eu.nixbuild.net $@

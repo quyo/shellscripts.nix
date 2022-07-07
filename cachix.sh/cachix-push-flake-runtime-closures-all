@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+nix flake show --json --legacy \
+  | jq '.legacyPackages."x86_64-linux"|keys[]' \
+  | xargs -I {} cachix-push-flake-runtime-closure-single $1#{}

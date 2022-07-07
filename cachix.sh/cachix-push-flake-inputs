@@ -2,6 +2,6 @@
 
 set -e
 
-nix flake archive --json \
+nix flake archive --json $1 \
   | jq -r '.path,(.inputs|to_entries[].value.path)' \
   | cachix push quyo-public

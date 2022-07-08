@@ -24,8 +24,8 @@
 
       in {
 
-        packages = with pkgs; {
-          inherit cachixsh nixbuildsh nixsh;
+        packages = {
+          inherit (pkgs) cachixsh nixbuildsh nixsh;
         };
 
         devShell = with pkgs.devshell; mkShell {

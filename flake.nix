@@ -8,7 +8,9 @@
 
   outputs = { self, nixpkgs, flake-utils, devshell }:
     {
-      overlay = import ./overlay.nix;
+      overlays = {
+        default = import ./overlay.nix;
+      };
     }
     //
     flake-utils.lib.eachDefaultSystem (system:
@@ -16,8 +18,7 @@
 
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [
-            self.overlay
+          overlays = (builtins.attrValues self.overlays) ++ [
             devshell.overlay
           ];
         };
@@ -28,8 +29,10 @@
           inherit (pkgs) cachixsh nixbuildsh nixsh;
         };
 
-        devShell = with pkgs.devshell; mkShell {
-          imports = [ (importTOML ./devshell.toml) ];
+        devShells = {
+          default = with pkgs.devshell; mkShell {
+            imports = [ (importTOML ./devshell.toml) ];
+          };
         };
 
       }

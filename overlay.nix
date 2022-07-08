@@ -1,8 +1,8 @@
-self: super:
+final: prev:
 
 let
 
-  mkShellscriptDerivation = with super; src: extraBuildInputs: patchPhase:
+  mkShellscriptDerivation = with prev; src: extraBuildInputs: patchPhase:
     stdenv.mkDerivation {
       name = baseNameOf src;
       inherit src;
@@ -11,7 +11,7 @@ let
       installPhase = "mkdir -p $out/bin && cp * $out/bin/";
     };
 
-in with super; {
+in with prev; {
 
   nixsh = mkShellscriptDerivation ./nix.sh [] "";
 

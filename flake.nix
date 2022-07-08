@@ -22,14 +22,14 @@
           ];
         };
 
-      in rec {
+      in {
 
         packages = with pkgs; {
           inherit cachixsh nixbuildsh nixsh;
         };
 
-        devShell = pkgs.devshell.mkShell {
-          imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
+        devShell = with pkgs.devshell; mkShell {
+          imports = [ (importTOML ./devshell.toml) ];
         };
 
       }

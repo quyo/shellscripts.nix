@@ -2,7 +2,4 @@
 
 set -e
 
-nix flake update nixpkgs
-nix flake update qnixpkgs
-
 nix profile upgrade '.*'

@@ -7,9 +7,12 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, devshell }:
+    let
+      version = builtins.substring 0 8 self.lastModifiedDate;
+    in
     {
       overlays = {
-        default = import ./overlay.nix;
+        default = import ./overlay.nix version;
       };
     }
     //
@@ -23,11 +26,22 @@
           ];
         };
 
+        flakePkgs = {
+          inherit (pkgs)
+            cachixsh
+            nixbuildsh
+            nixsh;
+        };
+
       in {
 
-        packages = {
-          inherit (pkgs) cachixsh nixbuildsh nixsh;
-        };
+        packages = flakePkgs
+          //
+          {
+            default = pkgs.hello.overrideAttrs (oldAttrs: {
+              nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs);
+            });
+          };
 
         devShells = {
           default = with pkgs.devshell; mkShell {

@@ -1,10 +1,11 @@
-final: prev:
+version: final: prev:
 
 let
 
   mkShellscriptDerivation = with prev; src: extraBuildInputs: patchPhase:
     stdenv.mkDerivation {
-      name = baseNameOf src;
+      pname = baseNameOf src;
+      inherit version;
       inherit src;
       buildInputs = [ bash ] ++ extraBuildInputs;
       inherit patchPhase;

@@ -41,6 +41,8 @@
             default = pkgs.linkFarmFromDrvs "shellscripts-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
           };
 
+        apps = import ./apps.nix self system;
+
         devShells = {
           default = with pkgs.devshell; mkShell {
             imports = [ (importTOML ./devshell.toml) ];

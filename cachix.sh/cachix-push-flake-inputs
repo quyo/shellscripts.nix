@@ -3,5 +3,5 @@
 set -e
 
 nix flake archive --json $1 \
-  | jq -r '.path,(.inputs|to_entries[].value.path)' \
-  | cachix push quyo-public
+  | @jq@/bin/jq -r '.path,(.inputs|to_entries[].value.path)' \
+  | @cachix@/bin/cachix push quyo-public

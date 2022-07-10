@@ -2,4 +2,4 @@
 
 set -e
 
-rlwrap ssh eu.nixbuild.net shell
+@rlwrap@/bin/rlwrap ssh eu.nixbuild.net shell

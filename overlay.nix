@@ -2,27 +2,22 @@ version: final: prev:
 
 let
 
-  mkShellscriptDerivation = with prev; src: extraBuildInputs: patchPhase:
-    stdenv.mkDerivation {
+  mkShellscriptDerivation = with prev; src: extraBuildInputs:
+    stdenv.mkDerivation ({
       pname = baseNameOf src;
       inherit version;
       inherit src;
-      buildInputs = [ bash ] ++ extraBuildInputs;
-      inherit patchPhase;
+      buildInputs = [ bash ] ++ (builtins.attrValues extraBuildInputs);
+      patchPhase = "for i in * ; do substituteAllInPlace $i ; done";
       installPhase = "mkdir -p $out/bin && cp * $out/bin/";
-    };
+    }
+    //
+    extraBuildInputs);
 
 in with prev; {
 
-  nixsh = mkShellscriptDerivation ./nix.sh [] "";
-
-  cachixsh = mkShellscriptDerivation ./cachix.sh [ cachix jq ] ''
-    sed -i -e "s|cachix |${cachix}/bin/cachix |g" cachix-*
-    sed -i -e "s|jq |${jq}/bin/jq |g"             cachix-*
-  '';
-
-  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh [ rlwrap ] ''
-    sed -i -e "s|rlwrap |${rlwrap}/bin/rlwrap |g" nixbuild-*
-  '';
+  nixsh = mkShellscriptDerivation ./nix.sh {};
+  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix jq; };
+  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit rlwrap; };
 
 }

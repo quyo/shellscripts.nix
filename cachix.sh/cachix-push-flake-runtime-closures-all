@@ -2,8 +2,6 @@
 
 set -e
 
-SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
-
 nix flake show --json --legacy $1 \
-  | jq '.packages."x86_64-linux"|keys[]' \
-  | xargs -I {} $SCRIPTDIR/cachix-push-flake-runtime-closure-single $1#{}
+  | @jq@/bin/jq '.packages."x86_64-linux"|keys[]' \
+  | xargs -I {} @out@/bin/cachix-push-flake-runtime-closure-single $1#{}

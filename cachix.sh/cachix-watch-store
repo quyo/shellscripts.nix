@@ -2,4 +2,4 @@
 
 set -e
 
-cachix watch-store quyo-public
+@cachix@/bin/cachix watch-store quyo-public

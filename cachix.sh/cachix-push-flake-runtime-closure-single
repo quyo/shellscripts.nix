@@ -3,5 +3,5 @@
 set -e
 
 nix build --json $1 \
-  | jq -r '.[].outputs | to_entries[].value' \
-  | cachix push quyo-public
+  | @jq@/bin/jq -r '.[].outputs | to_entries[].value' \
+  | @cachix@/bin/cachix push quyo-public

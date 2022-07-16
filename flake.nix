@@ -55,8 +55,9 @@
         flakePkgs = {
           inherit (pkgs)
             cachixsh
-            nixbuildsh
-            nixsh;
+            dockersh
+            nixsh
+            nixbuildsh;
         };
 
       in {

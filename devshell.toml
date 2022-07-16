@@ -2,42 +2,6 @@
 name = "shellscripts.nix"
 
 
-[[commands]]
-package = "nixsh"
-name = "nix-cache-upload"
-category = "nix.sh"
-help = "build ./default.nix and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.com"
-
-[[commands]]
-package = "nixsh"
-name = "nix-cache-upload-flake"
-category = "nix.sh"
-help = "build flake and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.com"
-
-[[commands]]
-package = "nixsh"
-name = "nix-system-cleanup"
-category = "nix.sh"
-help = "remove obsolete gcroots and run garbage collection"
-
-[[commands]]
-package = "nixsh"
-name = "nix-system-update"
-category = "nix.sh"
-help = "update all packages in current profile"
-
-
-[[commands]]
-package = "nixbuildsh"
-name = "nixbuild-remote-store"
-category = "nixbuild.sh"
-help = "build flake in nixbuild.net remote store"
-
-[[commands]]
-package = "nixbuildsh"
-name = "nixbuild-shell"
-category = "nixbuild.sh"
-help = "connect to nixbuild.net shell"
 
 
 [[commands]]
@@ -69,3 +33,54 @@ package = "cachixsh"
 name = "cachix-watch-store"
 category = "cachix.sh"
 help = "watch local nix store and push all changes to quyo-public.cachix.org"
+
+
+
+
+[[commands]]
+package = "dockersh"
+name = "docker-load-nix-build"
+category = "docker.sh"
+help = "build flake and load output into docker"
+
+
+
+
+[[commands]]
+package = "nixsh"
+name = "nix-cache-upload"
+category = "nix.sh"
+help = "build ./default.nix and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.com"
+
+[[commands]]
+package = "nixsh"
+name = "nix-cache-upload-flake"
+category = "nix.sh"
+help = "build flake and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.com"
+
+[[commands]]
+package = "nixsh"
+name = "nix-system-cleanup"
+category = "nix.sh"
+help = "remove obsolete gcroots and run garbage collection"
+
+[[commands]]
+package = "nixsh"
+name = "nix-system-update"
+category = "nix.sh"
+help = "update all packages in current profile"
+
+
+
+
+[[commands]]
+package = "nixbuildsh"
+name = "nixbuild-remote-store"
+category = "nixbuild.sh"
+help = "build flake in nixbuild.net remote store"
+
+[[commands]]
+package = "nixbuildsh"
+name = "nixbuild-shell"
+category = "nixbuild.sh"
+help = "connect to nixbuild.net shell"

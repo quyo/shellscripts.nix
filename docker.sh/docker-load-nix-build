@@ -1,0 +1,5 @@
+#!@bash@/bin/bash
+
+set -e
+
+@docker@/bin/docker load < $(@nix@/bin/nix build --no-link --print-out-paths $1)

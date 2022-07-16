@@ -6,8 +6,9 @@ let
     qshell-minimal
 
     cachixsh
-    nixbuildsh
+    dockersh
     nixsh
+    nixbuildsh
   ];
 
 in

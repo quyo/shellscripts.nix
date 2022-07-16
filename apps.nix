@@ -9,6 +9,8 @@ let
     cachix-watch-exec                        = { type = "app"; program = "${pkgs.cachixsh}/bin/cachix-watch-exec"; };
     cachix-watch-store                       = { type = "app"; program = "${pkgs.cachixsh}/bin/cachix-watch-store"; };
 
+    docker-load-nix-build                    = { type = "app"; program = "${pkgs.dockersh}/bin/docker-load-nix-build"; };
+
     nix-cache-upload                         = { type = "app"; program = "${pkgs.nixsh}/bin/nix-cache-upload"; };
     nix-cache-upload-flake                   = { type = "app"; program = "${pkgs.nixsh}/bin/nix-cache-upload-flake"; };
     nix-system-cleanup                       = { type = "app"; program = "${pkgs.nixsh}/bin/nix-system-cleanup"; };

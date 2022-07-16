@@ -14,7 +14,7 @@ let
 in
 
 pkgs.dockerTools.buildLayeredImage {
-  name = "shellscripts.nix";
+  name = "quyo/shellscripts.nix";
   tag = "latest";
 
   inherit contents;

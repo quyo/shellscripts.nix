@@ -44,3 +44,8 @@ jobs:
         working-directory: .
         run: |
           CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#ci-publish
+
+      - name: Load docker image
+        working-directory: .
+        run: |
+          nix run github:Samayel/shellscripts.nix#docker-load-nix-build .#docker

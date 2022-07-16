@@ -4,4 +4,4 @@ set -e
 
 @nix@/bin/nix copy \
     --to 's3://nix-cache-quyo-net?profile=nix-cache&region=eu-central-1' \
-    $(@nix@/bin/nix-build --no-out-link ./default.nix -A ${1})
+    $(@nix@/bin/nix-build --no-out-link ./default.nix -A $1)

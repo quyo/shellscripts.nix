@@ -2,4 +2,4 @@
 
 set -e
 
-@cachix@/bin/cachix watch-exec quyo-public ${1} -- ${@:2}
+@cachix@/bin/cachix watch-exec quyo-public $1 -- ${@:2}

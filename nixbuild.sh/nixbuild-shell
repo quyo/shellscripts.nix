@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!@bash@/bin/bash
 
 set -e
 
-@rlwrap@/bin/rlwrap ssh eu.nixbuild.net shell
+@rlwrap@/bin/rlwrap @openssh@/bin/ssh eu.nixbuild.net shell

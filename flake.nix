@@ -12,9 +12,16 @@
 
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
+
+    qnixpkgs.url = "github:Samayel/qnixpkgs";
+    qnixpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    qnixpkgs.inputs.flake-utils.follows = "flake-utils";
+    qnixpkgs.inputs.devshell.follows = "devshell";
+    qnixpkgs.inputs.flake-compat.follows = "flake-compat";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, devshell, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, devshell, qnixpkgs, ... }:
     let
       version = builtins.substring 0 8 self.lastModifiedDate;
     in
@@ -29,6 +36,7 @@
 
         flakeOverlays = (builtins.attrValues self.overlays) ++ [
           devshell.overlay
+          qnixpkgs.overlays.qshell
         ];
 
         # can now use "pkgs.package" or "pkgs.unstable.package"
@@ -57,9 +65,14 @@
           //
           {
             default = pkgs.linkFarmFromDrvs "shellscripts-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
+
+            ci-build = self.packages.${system}.default;
+            ci-publish = self.packages.${system}.default;
+
+            docker = import ./docker.nix pkgs;
           };
 
-        apps = import ./apps.nix self system;
+        apps = import ./apps.nix pkgs;
 
         devShells = {
           default = with pkgs.devshell; mkShell {

@@ -16,8 +16,8 @@ let
 
 in with prev; {
 
-  nixsh = mkShellscriptDerivation ./nix.sh {};
-  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix jq; };
-  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit rlwrap; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit gnugrep nix; };
+  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
+  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit nix openssh rlwrap; };
 
 }

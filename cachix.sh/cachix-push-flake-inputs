@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!@bash@/bin/bash
 
 set -e
 
-nix flake archive --json $1 \
+@nix@/bin/nix flake archive --json $1 \
   | @jq@/bin/jq -r '.path,(.inputs|to_entries[].value.path)' \
   | @cachix@/bin/cachix push quyo-public

@@ -1,8 +1,6 @@
-self: system:
+pkgs:
 
 let
-
-  pkgs = self.packages.${system};
 
   apps = with pkgs; {
     cachix-push-flake-inputs                 = { type = "app"; program = "${pkgs.cachixsh}/bin/cachix-push-flake-inputs"; };

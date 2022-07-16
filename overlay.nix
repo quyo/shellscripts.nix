@@ -14,7 +14,7 @@ let
     //
     extraBuildInputs);
 
-in with prev; {
+in with prev.unstable; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit docker nix; };

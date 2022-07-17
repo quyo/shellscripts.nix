@@ -2,19 +2,19 @@ version: final: prev:
 
 let
 
-  mkShellscriptDerivation = with prev; src: extraBuildInputs:
-    stdenv.mkDerivation ({
+  mkShellscriptDerivation = src: extraBuildInputs:
+    final.stdenv.mkDerivation ({
       pname = baseNameOf src;
       inherit version;
       inherit src;
-      buildInputs = [ bash ] ++ (builtins.attrValues extraBuildInputs);
+      buildInputs = [ final.bash ] ++ (builtins.attrValues extraBuildInputs);
       patchPhase = "for i in * ; do substituteAllInPlace $i ; done";
       installPhase = "mkdir -p $out/bin && cp * $out/bin/";
     }
     //
     extraBuildInputs);
 
-in with prev.unstable; {
+in with final.unstable; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit docker nix; };

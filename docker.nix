@@ -1,4 +1,12 @@
-{ dockerTools, qshell-minimal, cachixsh, dockersh, nixsh, nixbuildsh, bashInteractive }:
+{
+  bashInteractive,
+  cachixsh,
+  dockerTools,
+  dockersh,
+  nixbuildsh,
+  nixsh,
+  qshell-minimal
+}:
 
 let
 

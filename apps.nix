@@ -1,4 +1,9 @@
-{ cachixsh, dockersh, nixsh, nixbuildsh }:
+{
+  cachixsh,
+  dockersh,
+  nixsh,
+  nixbuildsh
+}:
 
 let
 

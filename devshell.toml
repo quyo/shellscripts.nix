@@ -60,6 +60,18 @@ help = "build flake and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.c
 
 [[commands]]
 package = "nixsh"
+name = "nix-dependency-graph-at-build-time"
+category = "nix.sh"
+help = "build and print the build-time dependency graph"
+
+[[commands]]
+package = "nixsh"
+name = "nix-dependency-graph-at-runtime"
+category = "nix.sh"
+help = "build and print the runtime dependency graph"
+
+[[commands]]
+package = "nixsh"
 name = "nix-system-cleanup"
 category = "nix.sh"
 help = "remove obsolete gcroots and run garbage collection"
@@ -69,6 +81,18 @@ package = "nixsh"
 name = "nix-system-update"
 category = "nix.sh"
 help = "update all packages in current profile"
+
+[[commands]]
+package = "nixsh"
+name = "nix-tree-at-build-time"
+category = "nix.sh"
+help = "explore the build-time dependency graph interactively"
+
+[[commands]]
+package = "nixsh"
+name = "nix-tree-at-runtime"
+category = "nix.sh"
+help = "explore the runtime dependency graph interactively"
 
 
 

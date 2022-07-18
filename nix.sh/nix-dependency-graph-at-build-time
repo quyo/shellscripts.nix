@@ -1,0 +1,5 @@
+#!@bash@/bin/bash
+
+set -e
+
+@nix@/bin/nix-store -q --tree $(@nix@/bin/nix-store -qd $(@nix@/bin/nix build --no-link --print-out-paths $1))

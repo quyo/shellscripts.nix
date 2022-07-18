@@ -14,11 +14,14 @@ let
     //
     extraBuildInputs);
 
-in with final.unstable; {
+  # substituteAllInPlace doesn't work on @nix-tree@
+  nixtree = final.nix-tree;
+
+in with final; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit docker nix; };
-  nixsh = mkShellscriptDerivation ./nix.sh { inherit gnugrep nix; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit findutils gnugrep nix nixtree; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit nix openssh rlwrap; };
 
 }

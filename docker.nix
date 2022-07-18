@@ -1,8 +1,8 @@
-pkgs:
+{ dockerTools, qshell-minimal, cachixsh, dockersh, nixsh, nixbuildsh, bashInteractive }:
 
 let
 
-  contents = with pkgs; [
+  contents = [
     qshell-minimal
 
     cachixsh
@@ -13,13 +13,13 @@ let
 
 in
 
-pkgs.dockerTools.buildLayeredImage {
+dockerTools.buildLayeredImage {
   name = "quyo/shellscripts.nix";
   tag = "latest";
 
   inherit contents;
 
   config = {
-    Cmd = [ "${pkgs.bashInteractive}/bin/bash" ];
+    Cmd = [ "${bashInteractive}/bin/bash" ];
   };
 }

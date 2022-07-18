@@ -54,12 +54,16 @@
         };
 
         flakePkgs = {
-          inherit (pkgs)
+          inherit (pkgs.unstable)
             cachixsh
             dockersh
             nixsh
             nixbuildsh;
         };
+
+        callPackage = path: overrides:
+          let f = import path;
+          in f ((builtins.intersectAttrs (builtins.functionArgs f) (pkgs // flakePkgs)) // overrides);
 
       in {
 
@@ -71,10 +75,10 @@
             ci-build = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-packages-ci-build"; });
             ci-publish = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-packages-ci-publish"; });
 
-            docker = (import ./docker.nix pkgs).overrideAttrs (oldAttrs: { name = "shellscripts-packages-docker"; });
+            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "shellscripts-packages-docker"; });
           };
 
-        apps = import ./apps.nix pkgs;
+        apps = callPackage ./apps.nix { };
 
         devShells = {
           default = with pkgs.devshell; mkShell {

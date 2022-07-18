@@ -1,0 +1,5 @@
+#!@bash@/bin/bash
+
+set -e
+
+@nix@/bin/nix build --no-link --print-out-paths $1 | @findutils@/bin/xargs -o @nixtree@/bin/nix-tree

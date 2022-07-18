@@ -1,0 +1,5 @@
+#!@bash@/bin/bash
+
+set -e
+
+@nixtree@/bin/nix-tree --derivation $1

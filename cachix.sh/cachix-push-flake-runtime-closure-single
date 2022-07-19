@@ -1,6 +1,8 @@
 #!@bash@/bin/bash
 
-set -e
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
 
 @nix@/bin/nix build --json $1 \
   | @jq@/bin/jq -r '.[].outputs | to_entries[].value' \

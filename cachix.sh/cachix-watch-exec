@@ -1,5 +1,7 @@
 #!@bash@/bin/bash
 
-set -e
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
 
 @cachix@/bin/cachix watch-exec quyo-public $1 -- ${@:2}

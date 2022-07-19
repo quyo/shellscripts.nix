@@ -24,7 +24,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, devshell, qnixpkgs, ... }:
     let
-      version = builtins.substring 0 8 self.lastModifiedDate;
+      version = "0.0.${builtins.substring 0 8 self.lastModifiedDate}.${self.shortRev or "dirty"}";
     in
     {
       overlays = {

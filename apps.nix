@@ -20,6 +20,7 @@ let
     nix-cache-upload-flake                   = { type = "app"; program = "${nixsh}/bin/nix-cache-upload-flake"; };
     nix-dependency-graph-at-build-time       = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-build-time"; };
     nix-dependency-graph-at-runtime          = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-runtime"; };
+    nix-fakechannel                          = { type = "app"; program = "${nixsh}/bin/nix-fakechannel"; };
     nix-system-cleanup                       = { type = "app"; program = "${nixsh}/bin/nix-system-cleanup"; };
     nix-system-update                        = { type = "app"; program = "${nixsh}/bin/nix-system-update"; };
     nix-tree-at-build-time                   = { type = "app"; program = "${nixsh}/bin/nix-tree-at-build-time"; };

@@ -72,6 +72,12 @@ help = "build and print the runtime dependency graph"
 
 [[commands]]
 package = "nixsh"
+name = "nix-fakechannel"
+category = "nix.sh"
+help = "create on-the-fly a nixpkgs channel from an arbitrary flake and run any command"
+
+[[commands]]
+package = "nixsh"
 name = "nix-system-cleanup"
 category = "nix.sh"
 help = "remove obsolete gcroots and run garbage collection"

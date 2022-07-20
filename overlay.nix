@@ -21,7 +21,7 @@ in with final; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit docker nix; };
-  nixsh = mkShellscriptDerivation ./nix.sh { inherit findutils gnugrep nix nixtree; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils gnugrep nix nixtree; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit nix openssh rlwrap; };
 
 }

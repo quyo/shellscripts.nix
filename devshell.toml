@@ -72,9 +72,21 @@ help = "build and print the runtime dependency graph"
 
 [[commands]]
 package = "nixsh"
+name = "nix-fake"
+category = "nix.sh"
+help = "wrapper around nix-fakechannel-fakenix using same arbitrary flake for nixpkgs channel and nix included in the nix shell"
+
+[[commands]]
+package = "nixsh"
 name = "nix-fakechannel"
 category = "nix.sh"
 help = "create on-the-fly a nixpkgs channel from an arbitrary flake and run any command"
+
+[[commands]]
+package = "nixsh"
+name = "nix-fakechannel-fakenix"
+category = "nix.sh"
+help = "create on-the-fly a nixpkgs channel from an arbitrary flake and run any command in a nix shell with included nix from a second flake"
 
 [[commands]]
 package = "nixsh"

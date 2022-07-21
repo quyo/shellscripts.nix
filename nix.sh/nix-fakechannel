@@ -18,13 +18,15 @@ fi
 CHANNELDIR=$(mktemp -d)
 
 if [ $VERBOSE -eq 1 ]; then
-  @coreutils@/bin/echo -n '{ ... }@args: builtins.trace args '              > $CHANNELDIR/default.nix
+  @coreutils@/bin/echo -n '{ ... }@args: builtins.trace args '                     > $CHANNELDIR/default.nix
 else
-  @coreutils@/bin/echo -n '{ ... }:'                                        > $CHANNELDIR/default.nix
+  @coreutils@/bin/echo -n '{ ... }:'                                               > $CHANNELDIR/default.nix
 fi
 
-@coreutils@/bin/echo -n "(builtins.getFlake \"$1\")."                      >> $CHANNELDIR/default.nix
-@coreutils@/bin/echo    'outputs.legacyPackages.${builtins.currentSystem}' >> $CHANNELDIR/default.nix
+@coreutils@/bin/echo -n "((builtins.getFlake \"$1\")."                            >> $CHANNELDIR/default.nix
+@coreutils@/bin/echo -n 'outputs.legacyPackages.${builtins.currentSystem} or {})' >> $CHANNELDIR/default.nix
+@coreutils@/bin/echo -n " // ((builtins.getFlake \"$1\")."                        >> $CHANNELDIR/default.nix
+@coreutils@/bin/echo    'outputs.packages.${builtins.currentSystem} or {})'       >> $CHANNELDIR/default.nix
 
 if [ $VERBOSE -eq 1 ]; then
   @coreutils@/bin/cat $CHANNELDIR/default.nix

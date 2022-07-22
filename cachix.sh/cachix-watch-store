@@ -5,7 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@openssh@/bin:@cachix@/bin"
-
-
 cachix watch-store quyo-public

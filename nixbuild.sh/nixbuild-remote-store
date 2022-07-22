@@ -5,7 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@openssh@/bin"
-
-
 nix build --eval-store auto --store ssh-ng://eu.nixbuild.net "$@"

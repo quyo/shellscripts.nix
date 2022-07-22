@@ -5,7 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@openssh@/bin:@nixtree@/bin:@findutils@/bin"
-
-
 nix build --no-link --print-out-paths "$1" | xargs -o nix-tree

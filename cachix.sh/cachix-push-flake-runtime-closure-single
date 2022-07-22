@@ -5,9 +5,6 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@openssh@/bin:@cachix@/bin:@jq@/bin"
-
-
 nix build --json "$1" \
   | jq -r '.[].outputs | to_entries[].value' \
   | cachix push quyo-public

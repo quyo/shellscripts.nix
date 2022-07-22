@@ -5,7 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@rlwrap@/bin:@openssh@/bin"
-
-
 rlwrap ssh eu.nixbuild.net shell

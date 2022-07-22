@@ -5,9 +5,6 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@coreutils@/bin:${PATH}"
-
-
 set +e
 test "$1" != "-v"
 VERBOSE=$?

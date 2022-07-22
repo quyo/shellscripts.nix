@@ -5,9 +5,6 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@openssh@/bin:@findutils@/bin:@jq@/bin:@out@/bin"
-
-
 nix flake show --json --legacy "$1" \
   | jq '.packages."x86_64-linux"|keys[]' \
   | xargs -I {} cachix-push-flake-runtime-closure-single "$1#{}"

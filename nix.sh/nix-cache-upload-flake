@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin"
 
 
 nix copy \

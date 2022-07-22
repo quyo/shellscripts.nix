@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@cachix@/bin:@openssh@/bin"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin:@cachix@/bin"
 
 
 cachix watch-exec quyo-public "$1" -- "${@:2}"

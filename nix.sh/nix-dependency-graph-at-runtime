@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:${PATH}"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin:${PATH}"
 
 
 nix-store -q --tree "$(nix build --no-link --print-out-paths "$1")"

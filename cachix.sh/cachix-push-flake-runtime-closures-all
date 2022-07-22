@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@findutils@/bin:@jq@/bin:@out@/bin"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin:@findutils@/bin:@jq@/bin:@out@/bin"
 
 
 nix flake show --json --legacy "$1" \

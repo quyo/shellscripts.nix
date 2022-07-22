@@ -28,8 +28,8 @@ let
 in with final; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
-  dockersh = mkShellscriptDerivation ./docker.sh { inherit docker git nix; };
-  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nixtree; };
+  dockersh = mkShellscriptDerivation ./docker.sh { inherit docker git nix openssh; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nixtree openssh; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
 
 }

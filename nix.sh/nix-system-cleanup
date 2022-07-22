@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@gnugrep@/bin"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin:@gnugrep@/bin"
 
 
 nix run nixpkgs#symlinks -- -dr /nix/var/nix/gcroots/ | grep -E -v ^absolute:

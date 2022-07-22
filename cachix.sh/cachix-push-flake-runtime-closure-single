@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-PATH="@nix@/bin:@git@/bin:@cachix@/bin:@jq@/bin:@openssh@/bin"
+PATH="@nix@/bin:@git@/bin:@openssh@/bin:@cachix@/bin:@jq@/bin"
 
 
 nix build --json "$1" \

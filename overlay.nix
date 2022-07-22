@@ -8,8 +8,16 @@ let
       inherit version;
       inherit src;
       buildInputs = [ final.bash ] ++ (builtins.attrValues extraBuildInputs);
-      patchPhase = "for i in * ; do substituteAllInPlace $i ; done";
+      patchPhase = "for file in * ; do substituteAllInPlace \"$file\" ; done";
       installPhase = "mkdir -p $out/bin && cp * $out/bin/";
+
+      doInstallCheck = true;
+      installCheckPhase = ''
+        for file in $out/bin/* ; do
+          ${final.stdenv.shellDryRun} "$file"
+          ${final.shellcheck}/bin/shellcheck "$file"
+        done
+      '';
     }
     //
     extraBuildInputs);
@@ -19,9 +27,9 @@ let
 
 in with final; {
 
-  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils jq nix; };
-  dockersh = mkShellscriptDerivation ./docker.sh { inherit docker nix; };
-  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils gnugrep nix nixtree; };
-  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit nix openssh rlwrap; };
+  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
+  dockersh = mkShellscriptDerivation ./docker.sh { inherit docker git nix; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nixtree; };
+  nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
 
 }

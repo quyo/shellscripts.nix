@@ -1,9 +1,13 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@nix@/bin/nix flake show --json --legacy $1 \
-  | @jq@/bin/jq '.packages."x86_64-linux"|keys[]' \
-  | @findutils@/bin/xargs -I {} @out@/bin/cachix-push-flake-runtime-closure-single $1#{}
+
+PATH="@nix@/bin:@git@/bin:@findutils@/bin:@jq@/bin:@out@/bin"
+
+
+nix flake show --json --legacy "$1" \
+  | jq '.packages."x86_64-linux"|keys[]' \
+  | xargs -I {} cachix-push-flake-runtime-closure-single "$1#{}"

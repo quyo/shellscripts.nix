@@ -1,7 +1,11 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@out@/bin/nix-fakechannel $1 @nix@/bin/nix --extra-experimental-features nix-command --extra-experimental-features flakes shell $2#nix -c ${@:3}
+
+PATH="@git@/bin:${PATH}"
+
+
+@out@/bin/nix-fakechannel "$1" @nix@/bin/nix --extra-experimental-features nix-command --extra-experimental-features flakes shell "$2#nix" -c "${@:3}"

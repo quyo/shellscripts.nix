@@ -1,8 +1,11 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
+
+
+PATH="@coreutils@/bin:${PATH}"
 
 
 set +e
@@ -17,24 +20,28 @@ fi
 
 CHANNELDIR=$(mktemp -d)
 
-if [ $VERBOSE -eq 1 ]; then
-  @coreutils@/bin/echo -n '{ ... }@args: builtins.trace args '                     > $CHANNELDIR/default.nix
-else
-  @coreutils@/bin/echo -n '{ ... }:'                                               > $CHANNELDIR/default.nix
-fi
+{
+  if [ $VERBOSE -eq 1 ]; then
+    echo -n '{ ... }@args: builtins.trace args '
+  else
+    echo -n '{ ... }:'
+  fi
 
-@coreutils@/bin/echo -n "((builtins.getFlake \"$1\")."                            >> $CHANNELDIR/default.nix
-@coreutils@/bin/echo -n 'outputs.legacyPackages.${builtins.currentSystem} or {})' >> $CHANNELDIR/default.nix
-@coreutils@/bin/echo -n " // ((builtins.getFlake \"$1\")."                        >> $CHANNELDIR/default.nix
-@coreutils@/bin/echo    'outputs.packages.${builtins.currentSystem} or {})'       >> $CHANNELDIR/default.nix
+  echo -n "((builtins.getFlake \"$1\")."
+  # shellcheck disable=SC2016
+  echo -n 'outputs.legacyPackages.${builtins.currentSystem} or {})'
+  echo -n " // ((builtins.getFlake \"$1\")."
+  # shellcheck disable=SC2016
+  echo    'outputs.packages.${builtins.currentSystem} or {})'
+} > "$CHANNELDIR/default.nix"
 
 if [ $VERBOSE -eq 1 ]; then
-  @coreutils@/bin/cat $CHANNELDIR/default.nix
+  cat "$CHANNELDIR/default.nix"
 fi
 
 
 # inspired by https://ianthehenry.com/posts/how-to-learn-nix/chipping-away-at-flakes/
-NIX_PATH="nixpkgs=$CHANNELDIR" ${@:2}
+NIX_PATH="nixpkgs=$CHANNELDIR" "${@:2}"
 
 
-@coreutils@/bin/rm -rf $CHANNELDIR
+rm -rf "$CHANNELDIR"

@@ -1,7 +1,11 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@nix@/bin/nix build --no-link --print-out-paths $1 | @findutils@/bin/xargs -o @nixtree@/bin/nix-tree
+
+PATH="@nix@/bin:@git@/bin:@nixtree@/bin:@findutils@/bin"
+
+
+nix build --no-link --print-out-paths "$1" | xargs -o nix-tree

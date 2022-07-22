@@ -1,9 +1,13 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@nix@/bin/nix build --json $1 \
-  | @jq@/bin/jq -r '.[].outputs | to_entries[].value' \
-  | @cachix@/bin/cachix push quyo-public
+
+PATH="@nix@/bin:@git@/bin:@cachix@/bin:@jq@/bin:@openssh@/bin"
+
+
+nix build --json "$1" \
+  | jq -r '.[].outputs | to_entries[].value' \
+  | cachix push quyo-public

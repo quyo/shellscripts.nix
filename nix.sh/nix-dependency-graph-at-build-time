@@ -1,7 +1,11 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@nix@/bin/nix-store -q --tree $(@nix@/bin/nix-store -qd $(@nix@/bin/nix build --no-link --print-out-paths $1))
+
+PATH="@nix@/bin:@git@/bin:${PATH}"
+
+
+nix-store -q --tree "$(nix-store -qd "$(nix build --no-link --print-out-paths "$1")")"

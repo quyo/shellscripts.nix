@@ -1,9 +1,13 @@
-#!@bash@/bin/bash
+#!/usr/bin/env bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-@nix@/bin/nix run nixpkgs#symlinks -- -dr /nix/var/nix/gcroots/ | @gnugrep@/bin/egrep -v ^absolute:
 
-@nix@/bin/nix-collect-garbage -d
+PATH="@nix@/bin:@git@/bin:@gnugrep@/bin"
+
+
+nix run nixpkgs#symlinks -- -dr /nix/var/nix/gcroots/ | grep -E -v ^absolute:
+
+nix-collect-garbage -d

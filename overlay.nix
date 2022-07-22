@@ -18,7 +18,7 @@ let
 
         for file in $out/bin/* ; do
           wrapProgram $file \
-            --prefix PATH : ${final.lib.makeBinPath (builtins.attrValues buildInputs)}
+            --prefix PATH : $out/bin:${final.lib.makeBinPath (builtins.attrValues buildInputs)}
         done
 
         runHook postInstall

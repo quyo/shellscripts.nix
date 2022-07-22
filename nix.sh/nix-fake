@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-@out@/bin/nix-fakechannel-fakenix "$1" "$1" "${@:2}"
+nix-fakechannel-fakenix "$1" "$1" "${@:2}"

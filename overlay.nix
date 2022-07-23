@@ -46,7 +46,7 @@ let
 in with final; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
-  dockersh = mkShellscriptDerivation ./docker.sh { inherit docker git nix openssh; };
+  dockersh = mkShellscriptDerivation ./docker.sh { inherit git nix openssh; };
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nix-tree openssh; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
 

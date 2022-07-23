@@ -6,6 +6,8 @@ let
     let
       inherit (builtins) attrValues;
       inherit (final) lib makeWrapper shellcheck stdenv;
+      inherit (lib) makeBinPath;
+      inherit (stdenv) shellDryRun;
     in
       stdenv.mkDerivation ({
         pname = baseNameOf src;
@@ -22,7 +24,7 @@ let
 
           for file in $out/bin/* ; do
             wrapProgram $file \
-              --prefix PATH : $out/bin:${lib.makeBinPath (attrValues buildInputs)}
+              --prefix PATH : $out/bin:${makeBinPath (attrValues buildInputs)}
           done
 
           runHook postInstall
@@ -33,7 +35,7 @@ let
           runHook preInstallCheck
 
           for file in $out/bin/* ; do
-            ${stdenv.shellDryRun} "$file"
+            ${shellDryRun} "$file"
             ${shellcheck}/bin/shellcheck "$file"
           done
 

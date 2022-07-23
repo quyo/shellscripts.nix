@@ -2,12 +2,12 @@ version: final: prev:
 
 let
 
-  mkShellscriptDerivation =
+  mkShellscriptDerivation = src: buildInputs:
     let
       inherit (builtins) attrValues;
       inherit (final) lib makeWrapper shellcheck stdenv;
     in
-      src: buildInputs: stdenv.mkDerivation ({
+      stdenv.mkDerivation ({
         pname = baseNameOf src;
         inherit version;
         inherit src;

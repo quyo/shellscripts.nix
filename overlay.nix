@@ -2,40 +2,44 @@ version: final: prev:
 
 let
 
-  mkShellscriptDerivation = src: buildInputs:
-    final.stdenv.mkDerivation ({
-      pname = baseNameOf src;
-      inherit version;
-      inherit src;
+  mkShellscriptDerivation =
+    let
+      inherit (builtins) attrValues;
+      inherit (final) lib makeWrapper shellcheck stdenv;
+    in
+      src: buildInputs: stdenv.mkDerivation ({
+        pname = baseNameOf src;
+        inherit version;
+        inherit src;
 
-      nativeBuildInputs = [ final.makeWrapper ];
+        nativeBuildInputs = [ makeWrapper ];
 
-      installPhase = ''
-        runHook preInstall
+        installPhase = ''
+          runHook preInstall
 
-        mkdir -p $out/bin
-        cp * $out/bin/
+          mkdir -p $out/bin
+          cp * $out/bin/
 
-        for file in $out/bin/* ; do
-          wrapProgram $file \
-            --prefix PATH : $out/bin:${final.lib.makeBinPath (builtins.attrValues buildInputs)}
-        done
+          for file in $out/bin/* ; do
+            wrapProgram $file \
+              --prefix PATH : $out/bin:${lib.makeBinPath (attrValues buildInputs)}
+          done
 
-        runHook postInstall
-      '';
+          runHook postInstall
+        '';
 
-      doInstallCheck = true;
-      installCheckPhase = ''
-        runHook preInstallCheck
+        doInstallCheck = true;
+        installCheckPhase = ''
+          runHook preInstallCheck
 
-        for file in $out/bin/* ; do
-          ${final.stdenv.shellDryRun} "$file"
-          ${final.shellcheck}/bin/shellcheck "$file"
-        done
+          for file in $out/bin/* ; do
+            ${stdenv.shellDryRun} "$file"
+            ${shellcheck}/bin/shellcheck "$file"
+          done
 
-        runHook postInstallCheck
-      '';
-    });
+          runHook postInstallCheck
+        '';
+      });
 
 in with final; {
 

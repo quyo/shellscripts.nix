@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+[ -z "${DOQUYO_HOSTS}" ] && DOQUYO_HOSTS="\
+    vpn.fra1 \
+    vpn.nyc3 \
+    vpn.ams3 \
+    vpn.sgp1 \
+    vpn.sfo2 \
+    vpn.tor1 \
+    vpn.lon1 \
+    vpn.blr1 \
+    dox.fra1 \
+    dox.ams3 \
+    ns.fra1 \
+    mx.fra1 \
+    rancher.fra1 \
+    matrix.fra1 \
+    docker.fra1"
+
+for host in ${DOQUYO_HOSTS}
+do
+    ssh -t root@${host}.do.quyo.net bash -ilc "'$@'"
+    echo -e '\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n'
+done

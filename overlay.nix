@@ -51,6 +51,6 @@ in with final; {
   miscsh = mkShellscriptDerivation ./misc.sh { };
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nix-tree openssh; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
-  quyosh = mkShellscriptDerivation ./quyo.sh { };
+  quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 
 }

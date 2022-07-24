@@ -30,6 +30,10 @@ let
 
     nixbuild-remote-store                    = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-remote-store"; };
     nixbuild-shell                           = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-shell"; };
+
+    quyo-gitpull                             = { type = "app"; program = "${quyosh}/bin/quyo-gitpull"; };
+    quyo-reboot                              = { type = "app"; program = "${quyosh}/bin/quyo-reboot"; };
+    quyo-runall                              = { type = "app"; program = "${quyosh}/bin/quyo-runall"; };
   };
 
 in

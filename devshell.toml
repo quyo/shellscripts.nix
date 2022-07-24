@@ -126,3 +126,24 @@ package = "nixbuildsh"
 name = "nixbuild-shell"
 category = "nixbuild.sh"
 help = "connect to nixbuild.net shell"
+
+
+
+
+[[commands]]
+package = "quyosh"
+name = "quyo-gitpull"
+category = "quyo.sh"
+help = "update /bootstrap.sh on all systems of the quyo federation"
+
+[[commands]]
+package = "quyosh"
+name = "quyo-reboot"
+category = "quyo.sh"
+help = "reboot (almost) all systems of the quyo federation"
+
+[[commands]]
+package = "quyosh"
+name = "quyo-runall"
+category = "quyo.sh"
+help = "run a command on all systems of the quyo federation"

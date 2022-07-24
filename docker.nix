@@ -3,9 +3,12 @@
   cachixsh,
   dockerTools,
   dockersh,
+  matrixsh,
+  miscsh,
   nixbuildsh,
   nixsh,
-  qshell-minimal
+  qshell-minimal,
+  quyosh
 }:
 
 let
@@ -17,8 +20,8 @@ let
     dockersh
     matrixsh
     miscsh
-    nixsh
     nixbuildsh
+    nixsh
     quyosh
   ];
 

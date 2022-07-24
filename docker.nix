@@ -1,28 +1,15 @@
 {
   bashInteractive,
-  cachixsh,
   dockerTools,
-  dockersh,
-  matrixsh,
-  miscsh,
-  nixbuildsh,
-  nixsh,
   qshell-minimal,
-  quyosh
+  shellscripts
 }:
 
 let
 
   contents = [
     qshell-minimal
-
-    cachixsh
-    dockersh
-    matrixsh
-    miscsh
-    nixbuildsh
-    nixsh
-    quyosh
+    shellscripts
   ];
 
 in

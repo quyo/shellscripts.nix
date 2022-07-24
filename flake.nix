@@ -68,7 +68,8 @@
             miscsh
             nixsh
             nixbuildsh
-            quyosh;
+            quyosh
+            shellscripts;
         };
 
         callPackage = path: overrides:
@@ -83,12 +84,12 @@
         packages = flakePkgs
           //
           {
-            default = pkgs.linkFarmFromDrvs "shellscripts-packages-default" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
+            default = pkgs.linkFarmFromDrvs "shellscripts-default-${version}" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
 
-            ci-build = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-packages-ci-build"; });
-            ci-publish = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-packages-ci-publish"; });
+            ci-build = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-ci-build-${version}"; });
+            ci-publish = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "shellscripts-ci-publish-${version}"; });
 
-            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "shellscripts-packages-docker"; });
+            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "shellscripts-docker-${version}"; });
           };
 
         apps = callPackage ./apps.nix { };

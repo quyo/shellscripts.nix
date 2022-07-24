@@ -15,8 +15,11 @@ let
 
     cachixsh
     dockersh
+    matrixsh
+    miscsh
     nixsh
     nixbuildsh
+    quyosh
   ];
 
 in

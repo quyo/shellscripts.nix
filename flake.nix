@@ -62,8 +62,11 @@
           inherit (pkgs.unstable)
             cachixsh
             dockersh
+            matrixsh
+            miscsh
             nixsh
-            nixbuildsh;
+            nixbuildsh
+            quyosh;
         };
 
         callPackage = path: overrides:

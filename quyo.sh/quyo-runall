@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-[ -z "${DOQUYO_HOSTS}" ] && DOQUYO_HOSTS="\
+QUYO_HOSTS="\
     vpn.fra1 \
     vpn.nyc3 \
     vpn.ams3 \
@@ -22,7 +22,7 @@ IFS=$'\n\t'
     matrix.fra1 \
     docker.fra1"
 
-for host in ${DOQUYO_HOSTS}
+for host in ${QUYO_HOSTS}
 do
     ssh -t root@${host}.do.quyo.net bash -ilc "'$@'"
     echo -e '\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n'

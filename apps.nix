@@ -1,8 +1,11 @@
 {
   cachixsh,
   dockersh,
+  matrixsh,
+  miscsh,
   nixsh,
-  nixbuildsh
+  nixbuildsh,
+  quyosh
 }:
 
 let

@@ -20,6 +20,9 @@ let
     docker-pull-n-up                         = { type = "app"; program = "${dockersh}/bin/docker-pull-n-up"; };
     docker-tag-n-push                        = { type = "app"; program = "${dockersh}/bin/docker-tag-n-push"; };
 
+    http-less                                = { type = "app"; program = "${miscsh}/bin/http-less"; };
+    https-less                               = { type = "app"; program = "${miscsh}/bin/https-less"; };
+
     nix-cache-upload                         = { type = "app"; program = "${nixsh}/bin/nix-cache-upload"; };
     nix-cache-upload-flake                   = { type = "app"; program = "${nixsh}/bin/nix-cache-upload-flake"; };
     nix-dependency-graph-at-build-time       = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-build-time"; };

@@ -71,6 +71,21 @@ help = "add version tag and push both :latest and :{TAG}"
 
 
 [[commands]]
+package = "miscsh"
+name = "http-less"
+category = "misc.sh"
+help = "pretty-print a http request and the corresponding response"
+
+[[commands]]
+package = "miscsh"
+name = "https-less"
+category = "misc.sh"
+help = "pretty-print a https request and the corresponding response"
+
+
+
+
+[[commands]]
 package = "nixsh"
 name = "nix-cache-upload"
 category = "nix.sh"

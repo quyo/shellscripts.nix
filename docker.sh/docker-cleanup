@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# docker image prune -a --filter "until=24h"
+# docker container prune --filter "until=24h"
+# docker network prune --filter "until=24h"
+# docker volume prune
+
+docker system df
+docker system prune --all --volumes
+docker system df

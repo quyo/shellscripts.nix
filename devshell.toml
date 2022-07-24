@@ -39,9 +39,33 @@ help = "watch local nix store and push all changes to quyo-public.cachix.org"
 
 [[commands]]
 package = "dockersh"
+name = "docker-cleanup"
+category = "docker.sh"
+help = "remove all unused images and volumes"
+
+[[commands]]
+package = "dockersh"
 name = "docker-load-nix-build"
 category = "docker.sh"
 help = "build flake and load output into docker"
+
+[[commands]]
+package = "dockersh"
+name = "docker-memory-top10"
+category = "docker.sh"
+help = "list containers with the highest memory usage"
+
+[[commands]]
+package = "dockersh"
+name = "docker-pull-n-up"
+category = "docker.sh"
+help = "run docker-compose up after pulling"
+
+[[commands]]
+package = "dockersh"
+name = "docker-tag-n-push"
+category = "docker.sh"
+help = "add version tag and push both :latest and :{TAG}"
 
 
 

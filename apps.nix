@@ -14,7 +14,11 @@ let
     cachix-watch-exec                        = { type = "app"; program = "${cachixsh}/bin/cachix-watch-exec"; };
     cachix-watch-store                       = { type = "app"; program = "${cachixsh}/bin/cachix-watch-store"; };
 
+    docker-cleanup                           = { type = "app"; program = "${dockersh}/bin/docker-cleanup"; };
     docker-load-nix-build                    = { type = "app"; program = "${dockersh}/bin/docker-load-nix-build"; };
+    docker-memory-top10                      = { type = "app"; program = "${dockersh}/bin/docker-memory-top10"; };
+    docker-pull-n-up                         = { type = "app"; program = "${dockersh}/bin/docker-pull-n-up"; };
+    docker-tag-n-push                        = { type = "app"; program = "${dockersh}/bin/docker-tag-n-push"; };
 
     nix-cache-upload                         = { type = "app"; program = "${nixsh}/bin/nix-cache-upload"; };
     nix-cache-upload-flake                   = { type = "app"; program = "${nixsh}/bin/nix-cache-upload-flake"; };

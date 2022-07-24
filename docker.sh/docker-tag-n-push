@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+NAME=$1
+TAG=$2
+
+docker tag ${NAME}:latest quyo/${NAME}:latest
+docker tag quyo/${NAME}:latest quyo/${NAME}:${TAG}
+docker push quyo/${NAME}:latest
+docker push quyo/${NAME}:${TAG}

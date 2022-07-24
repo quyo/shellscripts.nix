@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+matrix-postgres-cli-non-interactive -d synapse -c "SELECT content FROM account_data WHERE user_id = '@bot.mjolnir:quyo.de' AND account_data_type = 'org.matrix.mjolnir.watched_lists';"
+matrix-postgres-cli-non-interactive -d synapse -c "UPDATE account_data SET content = '{\"references\":[\"https://matrix.to/#/!PEAeanEJWWbzuXJvoj:quyo.de\",\"https://matrix.to/#/!GbBAfidreyhGgBkuYz:quyo.de\"]}' WHERE user_id = '@bot.mjolnir:quyo.de' AND account_data_type = 'org.matrix.mjolnir.watched_lists';"
+matrix-postgres-cli-non-interactive -d synapse -c "SELECT content FROM account_data WHERE user_id = '@bot.mjolnir:quyo.de' AND account_data_type = 'org.matrix.mjolnir.watched_lists';"

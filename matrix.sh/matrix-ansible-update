@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+EXPIRE=$(date -d "14 days" +%Y-%m-%d)
+
+ansible-playbook -i inventory/hosts setup.yml --tags=generate-matrix-registration-token --extra-vars="one_time=no ex_date=${EXPIRE}"

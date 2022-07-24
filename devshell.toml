@@ -71,6 +71,69 @@ help = "add version tag and push both :latest and :{TAG}"
 
 
 [[commands]]
+package = "matrixsh"
+name = "matrix-ansible-check"
+category = "matrix.sh"
+help = "run self-check via ansible playbook"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-ansible-fix-media-store"
+category = "matrix.sh"
+help = "stop all services, remove storage/media-store folder and start services again"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-ansible-maintenance-postgres-vacuum"
+category = "matrix.sh"
+help = "run postgres-vacuum via ansible playbook and then start and check services"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-ansible-registration-multitoken"
+category = "matrix.sh"
+help = "create a multiple-time use token, which expires in 14 days"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-ansible-registration-singletoken"
+category = "matrix.sh"
+help = "create a one-time use token, which expires in 14 days""
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-ansible-update"
+category = "matrix.sh"
+help = "run setup-all,start via ansible playbook"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-api-cli"
+category = "matrix.sh"
+help = "send https request including ${MATRIX_ACCESS_TOKEN} and pretty-print the response"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-api-script"
+category = "matrix.sh"
+help = "send https request including ${MATRIX_ACCESS_TOKEN} with settings suitable for script usage"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-postgres-mjolnir-reset-watchedlists"
+category = "matrix.sh"
+help = "reset watched_lists of the Mjolnir bot in the database"
+
+[[commands]]
+package = "matrixsh"
+name = "matrix-postgres-relation-stats"
+category = "matrix.sh"
+help = "print relation statistics (top5 in number of rows and total size)"
+
+
+
+
+[[commands]]
 package = "miscsh"
 name = "http-less"
 category = "misc.sh"

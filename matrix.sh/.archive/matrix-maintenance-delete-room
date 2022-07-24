@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# https://matrix-org.github.io/synapse/latest/admin_api/rooms.html#version-2-new-version
+
+# curl \
+#   --request DELETE \
+#   --header "Authorization: Bearer $AUTH_TOKEN" \
+#   --header "Content-Type: application/json" \
+#   --data '{}' \
+#   'https://matrix.quyo.net/_synapse/admin/v2/rooms/<room_id>'
+
+# curl --request GET --header "Authorization: Bearer $AUTH_TOKEN" 'https://matrix.quyo.net/_synapse/admin/v2/rooms/<room_id>/delete_status' | jq .
+# curl --request GET --header "Authorization: Bearer $AUTH_TOKEN" 'https://matrix.quyo.net/_synapse/admin/v2/rooms/delete_status/<delete_id>' | jq .

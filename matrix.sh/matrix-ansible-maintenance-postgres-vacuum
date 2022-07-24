@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+ansible-playbook -i inventory/hosts setup.yml --tags=run-postgres-vacuum
+ansible-playbook -i inventory/hosts setup.yml --tags=start
+ansible-playbook -i inventory/hosts setup.yml --tags=check

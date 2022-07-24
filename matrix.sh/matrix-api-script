@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+https --check-status --ignore-stdin --timeout=60 --pretty=none --print=b \
+    -A bearer -a ${MATRIX_ACCESS_TOKEN} \
+    "${@:-matrix.quyo.net/_synapse/admin/v1/server_version}"

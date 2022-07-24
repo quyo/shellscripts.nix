@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# docker pull registry.gitlab.com/mb-saces/rust-synapse-compress-state:latest
+# docker run --rm --name matrix-rust-synapse-compress-state-auto-compressor \
+#     --user=996:1000 \
+#     --cap-drop=ALL \
+#     --network=matrix \
+#     registry.gitlab.com/mb-saces/rust-synapse-compress-state:latest \
+#     /usr/local/bin/synapse_auto_compressor -c 500 -n 100 -p "host=matrix-postgres user=synapse password=${DB_PASSWORD} dbname=synapse"

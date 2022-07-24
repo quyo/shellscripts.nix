@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+https --pretty=all -vv \
+    -A bearer -a ${MATRIX_ACCESS_TOKEN} \
+    "${@:-matrix.quyo.net/_synapse/admin/v1/server_version}" \
+    | sed -Ee "s|${MATRIX_ACCESS_TOKEN}|[ACCESS_TOKEN REDACTED]|gi" \
+    | less -R

@@ -98,7 +98,7 @@ help = "create a multiple-time use token, which expires in 14 days"
 package = "matrixsh"
 name = "matrix-ansible-registration-singletoken"
 category = "matrix.sh"
-help = "create a one-time use token, which expires in 14 days""
+help = "create a one-time use token, which expires in 14 days"
 
 [[commands]]
 package = "matrixsh"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+nix-fake nixpkgs nix-env -f '<nixpkgs>' -qaA "$1" --meta --json \
+  | jq -r '.[] | .name + " " + .meta.description,
+           "",
+           (.meta.longDescription | rtrimstr("\n"))'

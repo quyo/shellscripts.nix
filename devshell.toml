@@ -192,6 +192,12 @@ help = "create on-the-fly a nixpkgs channel from an arbitrary flake and run any 
 
 [[commands]]
 package = "nixsh"
+name = "nix-info"
+category = "nix.sh"
+help = "print name and description of a nixpkgs attribute"
+
+[[commands]]
+package = "nixsh"
 name = "nix-system-cleanup"
 category = "nix.sh"
 help = "remove obsolete gcroots and run garbage collection"

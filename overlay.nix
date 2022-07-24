@@ -49,7 +49,7 @@ in with final; {
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
   matrixsh = mkShellscriptDerivation ./matrix.sh { inherit coreutils gnused httpie less; };
   miscsh = mkShellscriptDerivation ./misc.sh { inherit httpie less; };
-  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep nix nix-tree openssh; };
+  nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep jq nix nix-tree openssh; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 

@@ -44,6 +44,7 @@ let
     nix-fake                                   = { type = "app"; program = "${nixsh}/bin/nix-fake"; };
     nix-fakechannel                            = { type = "app"; program = "${nixsh}/bin/nix-fakechannel"; };
     nix-fakechannel-fakenix                    = { type = "app"; program = "${nixsh}/bin/nix-fakechannel-fakenix"; };
+    nix-info                                   = { type = "app"; program = "${nixsh}/bin/nix-info"; };
     nix-system-cleanup                         = { type = "app"; program = "${nixsh}/bin/nix-system-cleanup"; };
     nix-system-update                          = { type = "app"; program = "${nixsh}/bin/nix-system-update"; };
     nix-tree-at-build-time                     = { type = "app"; program = "${nixsh}/bin/nix-tree-at-build-time"; };

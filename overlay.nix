@@ -53,12 +53,9 @@ in with final; {
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 
-  shellscripts = symlinkJoin
+  shellscripts = buildEnv
   {
     name = "shellscripts-${version}";
-    preferLocalBuild = false;
-    allowSubstitutes = true;
-
     paths = [
       cachixsh
       dockersh

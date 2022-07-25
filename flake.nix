@@ -72,12 +72,8 @@
             shellscripts;
         };
 
-        callPackage = path: overrides:
-          let
-            f = import path;
-            inherit (builtins) functionArgs intersectAttrs;
-          in
-            f ((intersectAttrs (functionArgs f) (pkgs // flakePkgs)) // overrides);
+        callPackage = pkgs.lib.callPackageWith (pkgs // flakePkgs);
+        callPackageNonOverridable = fn: args: removeAttrs (callPackage fn args) [ "override" "overrideDerivation" ];
 
       in {
 
@@ -92,7 +88,7 @@
             docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "shellscripts-docker-${version}"; });
           };
 
-        apps = callPackage ./apps.nix { };
+        apps = callPackageNonOverridable ./apps.nix { };
 
         devShells = {
           default =

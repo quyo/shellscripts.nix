@@ -5,4 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+LOCAL_USERPROFILE=$HOME/.config/nix/userprofile-local
+[[ -d "$LOCAL_USERPROFILE" ]] && nix flake update "$LOCAL_USERPROFILE"
+
 nix profile upgrade '.*'

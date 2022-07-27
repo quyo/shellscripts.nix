@@ -5,11 +5,11 @@ let
   mkShellscriptDerivation = src: deps:
     let
       inherit (builtins) attrValues;
-      inherit (final) lib makeWrapper shellcheck stdenv;
+      inherit (final) lib makeWrapper shellcheck stdenvNoCC;
       inherit (lib) makeBinPath;
-      inherit (stdenv) shellDryRun;
+      inherit (stdenvNoCC) shellDryRun;
     in
-      stdenv.mkDerivation ({
+      stdenvNoCC.mkDerivation ({
         pname = baseNameOf src;
         inherit version;
         inherit src;

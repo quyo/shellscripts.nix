@@ -39,7 +39,7 @@ let
 
     nix-cache-upload                           = { type = "app"; program = "${nixsh}/bin/nix-cache-upload"; };
     nix-cache-upload-flake                     = { type = "app"; program = "${nixsh}/bin/nix-cache-upload-flake"; };
-    nix-dependency-graph-at-build-time         = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-build-time"; };
+    nix-dependency-graph-at-buildtime          = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-buildtime"; };
     nix-dependency-graph-at-runtime            = { type = "app"; program = "${nixsh}/bin/nix-dependency-graph-at-runtime"; };
     nix-fake                                   = { type = "app"; program = "${nixsh}/bin/nix-fake"; };
     nix-fakechannel                            = { type = "app"; program = "${nixsh}/bin/nix-fakechannel"; };
@@ -49,7 +49,7 @@ let
     nix-list-subpackages                       = { type = "app"; program = "${nixsh}/bin/nix-list-subpackages"; };
     nix-system-cleanup                         = { type = "app"; program = "${nixsh}/bin/nix-system-cleanup"; };
     nix-system-update                          = { type = "app"; program = "${nixsh}/bin/nix-system-update"; };
-    nix-tree-at-build-time                     = { type = "app"; program = "${nixsh}/bin/nix-tree-at-build-time"; };
+    nix-tree-at-buildtime                      = { type = "app"; program = "${nixsh}/bin/nix-tree-at-buildtime"; };
     nix-tree-at-runtime                        = { type = "app"; program = "${nixsh}/bin/nix-tree-at-runtime"; };
 
     nixbuild-remote-store                      = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-remote-store"; };

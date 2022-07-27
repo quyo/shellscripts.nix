@@ -14,13 +14,13 @@ help = "push flake inputs to quyo-public.cachix.org"
 package = "cachixsh"
 name = "cachix-push-flake-runtime-closures-all"
 category = "cachix.sh"
-help = "push all flake runtime closures to quyo-public.cachix.org"
+help = "push all flake run-time closures to quyo-public.cachix.org"
 
 [[commands]]
 package = "cachixsh"
 name = "cachix-push-flake-runtime-closure-single"
 category = "cachix.sh"
-help = "push runtime closure of a single flake attribute to quyo-public.cachix.org"
+help = "push run-time closure of a single flake attribute to quyo-public.cachix.org"
 
 [[commands]]
 package = "cachixsh"
@@ -162,7 +162,7 @@ help = "build flake and upload to nix-cache-quyo-net.s3.eu-central-1.amazonaws.c
 
 [[commands]]
 package = "nixsh"
-name = "nix-dependency-graph-at-build-time"
+name = "nix-dependency-graph-at-buildtime"
 category = "nix.sh"
 help = "build and print the build-time dependency graph"
 
@@ -170,7 +170,7 @@ help = "build and print the build-time dependency graph"
 package = "nixsh"
 name = "nix-dependency-graph-at-runtime"
 category = "nix.sh"
-help = "build and print the runtime dependency graph"
+help = "build and print the run-time dependency graph"
 
 [[commands]]
 package = "nixsh"
@@ -222,7 +222,7 @@ help = "update all packages in current profile"
 
 [[commands]]
 package = "nixsh"
-name = "nix-tree-at-build-time"
+name = "nix-tree-at-buildtime"
 category = "nix.sh"
 help = "explore the build-time dependency graph interactively"
 
@@ -230,7 +230,7 @@ help = "explore the build-time dependency graph interactively"
 package = "nixsh"
 name = "nix-tree-at-runtime"
 category = "nix.sh"
-help = "explore the runtime dependency graph interactively"
+help = "explore the run-time dependency graph interactively"
 
 
 

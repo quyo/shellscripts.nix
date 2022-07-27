@@ -2,7 +2,7 @@ version: final: prev:
 
 let
 
-  mkShellscriptDerivation = src: buildInputs:
+  mkShellscriptDerivation = src: deps:
     let
       inherit (builtins) attrValues;
       inherit (final) lib makeWrapper shellcheck stdenv;
@@ -24,7 +24,7 @@ let
 
           for file in $out/bin/* ; do
             wrapProgram $file \
-              --prefix PATH : $out/bin:${makeBinPath (attrValues buildInputs)}
+              --prefix PATH : $out/bin:${makeBinPath (attrValues deps)}
           done
 
           runHook postInstall

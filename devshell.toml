@@ -198,6 +198,18 @@ help = "print name and description of a nixpkgs attribute"
 
 [[commands]]
 package = "nixsh"
+name = "nix-list-packages"
+category = "nix.sh"
+help = "list all matching packages in nixpkgs (e.g. nix-list-packages '.*aa.*')"
+
+[[commands]]
+package = "nixsh"
+name = "nix-list-subpackages"
+category = "nix.sh"
+help = "list all matching subpackages of an attribute in nixpkgs (e.g. nix-list-subpackages python3Packages '.*aa.*')"
+
+[[commands]]
+package = "nixsh"
 name = "nix-system-cleanup"
 category = "nix.sh"
 help = "remove obsolete gcroots and run garbage collection"

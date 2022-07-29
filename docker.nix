@@ -1,17 +1,14 @@
-{
-  bashInteractive,
-  dockerTools,
-  qshell-minimal,
-  shellscripts
+{ bashInteractive
+, dockerTools
+, qshell-minimal
+, shellscripts
 }:
 
 let
-
   contents = [
     qshell-minimal
     shellscripts
   ];
-
 in
 
 dockerTools.buildLayeredImage {

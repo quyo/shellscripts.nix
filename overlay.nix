@@ -1,7 +1,6 @@
 version: final: prev:
 
 let
-
   mkShellscriptDerivation = src: deps:
     let
       inherit (builtins) attrValues;
@@ -9,41 +8,42 @@ let
       inherit (lib) makeBinPath;
       inherit (stdenvNoCC) shellDryRun;
     in
-      stdenvNoCC.mkDerivation ({
-        pname = baseNameOf src;
-        inherit version;
-        inherit src;
+    stdenvNoCC.mkDerivation ({
+      pname = baseNameOf src;
+      inherit version;
+      inherit src;
 
-        nativeBuildInputs = [ makeWrapper ];
+      nativeBuildInputs = [ makeWrapper ];
 
-        installPhase = ''
-          runHook preInstall
+      installPhase = ''
+        runHook preInstall
 
-          mkdir -p $out/bin
-          cp * $out/bin/
+        mkdir -p $out/bin
+        cp * $out/bin/
 
-          for file in $out/bin/* ; do
-            wrapProgram $file \
-              --prefix PATH : $out/bin:${makeBinPath (attrValues deps)}
-          done
+        for file in $out/bin/* ; do
+          wrapProgram $file \
+            --prefix PATH : $out/bin:${makeBinPath (attrValues deps)}
+        done
 
-          runHook postInstall
-        '';
+        runHook postInstall
+      '';
 
-        doInstallCheck = true;
-        installCheckPhase = ''
-          runHook preInstallCheck
+      doInstallCheck = true;
+      installCheckPhase = ''
+        runHook preInstallCheck
 
-          for file in $out/bin/* ; do
-            ${shellDryRun} "$file"
-            ${shellcheck}/bin/shellcheck "$file"
-          done
+        for file in $out/bin/* ; do
+          ${shellDryRun} "$file"
+          ${shellcheck}/bin/shellcheck "$file"
+        done
 
-          runHook postInstallCheck
-        '';
-      });
+        runHook postInstallCheck
+      '';
+    });
+in
 
-in with final; {
+with final; {
 
   cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
@@ -54,17 +54,17 @@ in with final; {
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 
   shellscripts = buildEnv
-  {
-    name = "shellscripts-${version}";
-    paths = [
-      cachixsh
-      dockersh
-      matrixsh
-      miscsh
-      nixsh
-      nixbuildsh
-      quyosh
-    ];
-  };
+    {
+      name = "shellscripts-${version}";
+      paths = [
+        cachixsh
+        dockersh
+        matrixsh
+        miscsh
+        nixsh
+        nixbuildsh
+        quyosh
+      ];
+    };
 
 }

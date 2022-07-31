@@ -24,6 +24,6 @@ QUYO_HOSTS="\
 
 for host in ${QUYO_HOSTS}
 do
-    ssh -t root@${host}.do.quyo.net bash -ilc "'$@'"
+    ssh -4 -t root@${host}.do.quyo.net bash -ilc "'$@'"
     echo -e '\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n'
 done

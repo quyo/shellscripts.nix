@@ -1,6 +1,8 @@
-version: final: prev:
+self: final: prev:
 
 let
+  version = final.lib.q.flakeVersion self;
+
   mkShellscriptDerivation = src: deps:
     let
       inherit (builtins) attrValues;

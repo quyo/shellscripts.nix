@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-quyo-runall '[[ ! -f /root/.skip-on-quyo-reboot ]] && { read -t 10 -p "Press return key to cancel reboot on $(hostname) ... " x || reboot; }'
+quyo-runall '[[ -f /root/.skip-on-quyo-reboot ]] || { read -t 10 -p "Press return key to cancel reboot on $(hostname) ... " x || reboot; }'

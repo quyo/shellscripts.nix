@@ -30,7 +30,7 @@
       };
     }
     //
-    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
+    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux flake-utils.lib.system.armv7l-linux ] (system:
       let
         inherit (pkgs-stable) lib;
 

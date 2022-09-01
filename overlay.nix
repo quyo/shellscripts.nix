@@ -47,7 +47,8 @@ in
 
 with final; {
 
-  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
+  cachixsh = mkShellscriptDerivation ./cachix.sh ({ inherit findutils git jq nix openssh; }
+    // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit cachix; });
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
   matrixsh = mkShellscriptDerivation ./matrix.sh { inherit coreutils gnused httpie less; };
   miscsh = mkShellscriptDerivation ./misc.sh { inherit httpie less; };
@@ -59,16 +60,13 @@ with final; {
     {
       name = "shellscripts-${version}";
       paths = [
+        cachixsh
         dockersh
         matrixsh
         miscsh
         nixsh
         nixbuildsh
         quyosh
-      ]
-      ++ lib.optionals (stdenv.hostPlatform.isAarch32 == false)
-      [
-        cachixsh
       ];
     };
 

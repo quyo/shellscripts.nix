@@ -35,11 +35,17 @@ jobs:
           nix_on_tmpfs: false
           nix_conf: |
             experimental-features = nix-command flakes
-            builders = ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net i686-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net aarch64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net armv7l-linux - 100 1 big-parallel,benchmark
 
       - uses: nixbuild/nixbuild-action@v12
         with:
           nixbuild_ssh_key: ${{ secrets.NIXBUILD_SSH_KEY }}
+
+      - name: Fix nix.conf
+        working-directory: .
+        run: |
+          NIX_CONF_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/nix/nix.conf"
+          echo 'builders = ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net i686-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net aarch64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net armv7l-linux - 100 1 big-parallel,benchmark' >> "$NIX_CONF_FILE"
+          cat "$NIX_CONF_FILE"
 
       - name: Upload flake inputs to Cachix
         working-directory: .

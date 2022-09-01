@@ -27,6 +27,7 @@
     {
       overlays = {
         default = import ./overlay.nix self;
+        overrides = import ./overrides.nix self;
       };
     }
     //
@@ -58,9 +59,29 @@
           ];
 
         flake-pkgs = flake-pkgs-mapper pkgs-unstable "" "";
+
+        exclusions = rec
+        {
+          from-default = builtins.attrNames
+            (
+              {
+              }
+              // lib.optionalAttrs (system == flake-utils.lib.system.armv7l-linux)
+              {
+                inherit (flake-pkgs)
+                  cachixsh;
+              }
+            );
+
+          from-ci-build = from-default ++ builtins.attrNames
+            { };
+
+          from-ci-publish = from-ci-build ++ builtins.attrNames
+            { };
+        };
       in
       {
-        packages = lib.q.flake.packages "shellscripts" version flake-pkgs { } ./docker.nix;
+        packages = lib.q.flake.packages "shellscripts" version flake-pkgs exclusions ./docker.nix;
 
         apps = lib.q.flake.apps flake-pkgs ./apps.nix;
 

@@ -59,13 +59,16 @@ with final; {
     {
       name = "shellscripts-${version}";
       paths = [
-        cachixsh
         dockersh
         matrixsh
         miscsh
         nixsh
         nixbuildsh
         quyosh
+      ]
+      ++ lib.optionals (stdenv.hostPlatform.isAarch32 == false)
+      [
+        cachixsh
       ];
     };
 

@@ -35,6 +35,7 @@ jobs:
           nix_on_tmpfs: false
           nix_conf: |
             experimental-features = nix-command flakes
+            builders = ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net i686-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net aarch64-linux - 100 1 big-parallel,benchmark ; ssh://eu.nixbuild.net armv7l-linux - 100 1 big-parallel,benchmark
 
       - uses: nixbuild/nixbuild-action@v12
         with:

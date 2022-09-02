@@ -13,7 +13,8 @@ let
     relude = haskell.lib.dontCheck hprev.relude;
     th-orphans = haskell.lib.dontCheck hprev.th-orphans;
     time-compat = haskell.lib.dontCheck hprev.time-compat;
-  };
+  }
+  // lib.optionalAttrs (builtins.hasAttr "overrides" prev.haskellPackages) (prev.haskellPackages.overrides hfinal hprev);
 in
 
 {

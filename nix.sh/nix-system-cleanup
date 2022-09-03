@@ -7,6 +7,6 @@ IFS=$'\n\t'
 
 nix profile wipe-history
 
-nix run nixpkgs#symlinks -- -dr /nix/var/nix/gcroots/ | grep -E -v ^absolute:
+symlinks -dr /nix/var/nix/gcroots/ | grep -E -v ^absolute:
 
 nix-collect-garbage -d

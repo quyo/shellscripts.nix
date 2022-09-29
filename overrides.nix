@@ -7,6 +7,10 @@ let
     doCheck = false;
   });
 
+  dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
+    doInstallCheck = false;
+  });
+
   dontCheckHaskell = prev.haskell.lib.dontCheck;
 in
 
@@ -35,4 +39,10 @@ in
   });
 
   openssh = dontCheck prev.openssh;
+
+  python310 = prev.python310 // {
+    pkgs = prev.python310.pkgs.overrideScope (pyfinal: pyprev: {
+      sh = dontInstallCheck pyprev.sh;
+    });
+  };
 }

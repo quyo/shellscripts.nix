@@ -32,6 +32,7 @@ in
     inline-c = dontCheckHaskell hprev.inline-c;
     inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
     insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
+    lukko = dontCheckHaskell hprev.lukko;
     relude = dontCheckHaskell hprev.relude;
     serialise = dontCheckHaskell hprev.serialise;
     th-orphans = dontCheckHaskell hprev.th-orphans;

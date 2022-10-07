@@ -46,19 +46,24 @@
         pkgs-stable = import nixpkgs-stable { inherit overlays system; };
         pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
 
-        flake-pkgs-mapper = lib.q.mapPkgs
+        flake-pkgs-stable-mapper = lib.q.mapPkgs
           [
             "cachixsh"
-            "dockersh"
             "matrixsh"
             "miscsh"
-            "nixsh"
             "nixbuildsh"
             "quyosh"
             "shellscripts"
           ];
 
-        flake-pkgs = flake-pkgs-mapper pkgs-stable "" "";
+        flake-pkgs-unstable-mapper = lib.q.mapPkgs
+          [
+            "dockersh"
+            "nixsh"
+          ];
+
+        flake-pkgs = flake-pkgs-stable-mapper pkgs-stable "" ""
+        // flake-pkgs-unstable-mapper pkgs-unstable "" "";
       in
       {
         packages = lib.q.flake.packages "shellscripts" version flake-pkgs { } ./docker.nix;

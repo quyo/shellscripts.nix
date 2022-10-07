@@ -1,9 +1,9 @@
 {
   inputs = {
     # nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/13cbe534ebe63a0bc2619c57661a2150569d0443";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/9ecc270f02b09b2f6a76b98488554dd842797357";
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/c4d0026e7346ad2006c2ba730d5a712c18195aab";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/95fda953f6db2e9496d2682c4fc7b82f959878f7";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -31,7 +31,7 @@
       };
     }
     //
-    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux flake-utils.lib.system.armv7l-linux ] (system:
+    flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:
       let
         inherit (pkgs-stable) lib;
 
@@ -58,7 +58,7 @@
             "shellscripts"
           ];
 
-        flake-pkgs = flake-pkgs-mapper pkgs-unstable "" "";
+        flake-pkgs = flake-pkgs-mapper pkgs-stable "" "";
       in
       {
         packages = lib.q.flake.packages "shellscripts" version flake-pkgs { } ./docker.nix;

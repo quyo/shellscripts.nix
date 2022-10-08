@@ -12,6 +12,20 @@ let
   });
 
   dontCheckHaskell = prev.haskell.lib.dontCheck;
+
+  dontCheckLLVM = drv: drv.overrideAttrs (oldAttrs: {
+    doCheck = false;
+    cmakeFlags = map (x: builtins.replaceStrings ["DLLVM_BUILD_TESTS=ON"] ["DLLVM_BUILD_TESTS=OFF"] x) oldAttrs.cmakeFlags;
+  });
+
+  fixllvmPackages = llvmPkgs: llvmPkgs // (
+    let
+      tools = llvmPkgs.tools.extend (tfinal: tprev: {
+        libllvm = dontCheckLLVM tprev.libllvm;
+      });
+    in
+    { inherit tools; } // tools
+  );
 in
 
 {
@@ -28,6 +42,7 @@ in
         patch -p2 <$p296
       '';
     }));
+    cryptonite = dontCheckHaskell hprev.cryptonite;
     half = dontCheckHaskell hprev.half;
     inline-c = dontCheckHaskell hprev.inline-c;
     inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
@@ -38,6 +53,12 @@ in
     th-orphans = dontCheckHaskell hprev.th-orphans;
     time-compat = dontCheckHaskell hprev.time-compat;
   });
+
+  llvmPackages = fixllvmPackages prev.llvmPackages;
+  llvmPackages_12 = fixllvmPackages prev.llvmPackages_12;
+  llvmPackages_13 = fixllvmPackages prev.llvmPackages_13;
+  llvmPackages_14 = fixllvmPackages prev.llvmPackages_14;
+  llvmPackages_latest = fixllvmPackages prev.llvmPackages_latest;
 
   openssh = dontCheck prev.openssh;
 

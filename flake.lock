@@ -151,11 +151,11 @@
         "shellscripts": "shellscripts"
       },
       "locked": {
-        "lastModified": 1665311990,
-        "narHash": "sha256-ek5y8pToInxDqxcAl8HqbPB6vTNUWKSFgyJ/kkkGLtc=",
+        "lastModified": 1665314605,
+        "narHash": "sha256-o9o2rvcavFAuoD28Hn5N1di3rXgPOYGvympGu4rFSsU=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "74fee1b864d19014772644a50c6e85ae81aa609c",
+        "rev": "7e122b3b8c70c68acc6e57f95ba0460ce435eb68",
         "type": "github"
       },
       "original": {

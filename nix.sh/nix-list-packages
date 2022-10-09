@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix-fakechannel nixpkgs nix-env -f '<nixpkgs>' -qaP "$@"
+nix-fakechannel qnixpkgs nix-env -f '<nixpkgs>' -qaP "$@"

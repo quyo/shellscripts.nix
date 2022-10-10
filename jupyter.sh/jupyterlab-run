@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix run qnixpkgs#jupyterlab
+nix run qnixpkgs#jupyterlab -- "$@"

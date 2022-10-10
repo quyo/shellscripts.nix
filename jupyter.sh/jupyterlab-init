@@ -5,4 +5,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix develop qnixpkgs#jupyterlab --command generate-directory "$@"
+if [[ $# -ge 1 ]]; then
+  nix develop qnixpkgs#jupyterlab --command generate-directory "$@"
+else
+  nix develop qnixpkgs#jupyterlab --command generate-directory jupyterlab-drawio jupyterlab-ihaskell
+fi

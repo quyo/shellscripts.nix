@@ -71,6 +71,21 @@ help = "add version tag and push both :latest and :{TAG}"
 
 
 [[commands]]
+package = "jupytersh"
+name = "jupyterlab-init"
+category = "jupyter.sh"
+help = "generate a JupyterLab frontend directory ./jupyterlab"
+
+[[commands]]
+package = "jupytersh"
+name = "jupyterlab-run"
+category = "jupyter.sh"
+help = "start a JupyterLab server"
+
+
+
+
+[[commands]]
 package = "matrixsh"
 name = "matrix-ansible-check"
 category = "matrix.sh"

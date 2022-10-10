@@ -50,6 +50,7 @@ with final; {
   cachixsh = mkShellscriptDerivation ./cachix.sh ({ inherit findutils git jq nix openssh; }
     // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit cachix; });
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
+  jupytersh = mkShellscriptDerivation ./jupyter.sh { inherit git nix openssh; };
   matrixsh = mkShellscriptDerivation ./matrix.sh { inherit coreutils gnused httpie less; };
   miscsh = mkShellscriptDerivation ./misc.sh { inherit httpie less; };
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep jq nix nix-tree openssh symlinks; };
@@ -62,6 +63,7 @@ with final; {
       paths = [
         cachixsh
         dockersh
+        jupytersh
         matrixsh
         miscsh
         nixsh

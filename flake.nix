@@ -53,6 +53,7 @@
         flake-pkgs-stable-mapper = lib.q.mapPkgs
           [
             "cachixsh"
+            "jupytersh"
             "matrixsh"
             "miscsh"
             "nixbuildsh"
@@ -66,8 +67,10 @@
             "nixsh"
           ];
 
-        flake-pkgs = flake-pkgs-stable-mapper pkgs-stable "" ""
-        // flake-pkgs-unstable-mapper pkgs-unstable "" "";
+        flake-pkgs =
+          flake-pkgs-stable-mapper pkgs-stable "" ""
+          //
+          flake-pkgs-unstable-mapper pkgs-unstable "" "";
       in
       {
         packages = lib.q.flake.packages "shellscripts" version flake-pkgs { } ./docker.nix;

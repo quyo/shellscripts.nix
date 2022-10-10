@@ -1,5 +1,6 @@
 { cachixsh
 , dockersh
+, jupytersh
 , matrixsh
 , miscsh
 , nixsh
@@ -20,6 +21,9 @@ let
     docker-memory-top10 = { type = "app"; program = "${dockersh}/bin/docker-memory-top10"; };
     docker-pull-n-up = { type = "app"; program = "${dockersh}/bin/docker-pull-n-up"; };
     docker-tag-n-push = { type = "app"; program = "${dockersh}/bin/docker-tag-n-push"; };
+
+    jupyterlab-init = { type = "app"; program = "${jupytersh}/bin/jupyterlab-init"; };
+    jupyterlab-run = { type = "app"; program = "${jupytersh}/bin/jupyterlab-run"; };
 
     matrix-ansible-check = { type = "app"; program = "${matrixsh}/bin/matrix-ansible-check"; };
     matrix-ansible-fix-media-store = { type = "app"; program = "${matrixsh}/bin/matrix-ansible-fix-media-store"; };

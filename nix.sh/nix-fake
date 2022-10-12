@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix-fakechannel-fakenix "$1" "$1" "${@:2}"
+FAKECHANNEL="${1}" FAKENIX="${1}" nix-fakechannel-fakenix "${@:2}"

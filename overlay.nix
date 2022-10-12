@@ -1,6 +1,7 @@
 self: final: prev:
 
 let
+  qnixpkgs = "github:Samayel/qnixpkgs/${self.inputs.qnixpkgs.rev}";
   version = final.lib.q.flake.version self;
 
   mkShellscriptDerivation = src: deps:
@@ -25,7 +26,8 @@ let
 
         for file in $out/bin/* ; do
           wrapProgram $file \
-            --prefix PATH : $out/bin:${makeBinPath (attrValues deps)}
+            --prefix PATH : $out/bin:${makeBinPath (attrValues deps)} \
+            --set QNIXPKGS ${qnixpkgs}
         done
 
         runHook postInstall

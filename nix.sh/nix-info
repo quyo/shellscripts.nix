@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix-fakechannel qnixpkgs nix-env -f '<nixpkgs>' -qaA "$1" --meta --json \
+nix-fakechannel nix-env -f '<nixpkgs>' -qaA "$1" --meta --json \
   | jq -r '.[] | .name + " " + .meta.description,
            "",
            (.meta.longDescription | rtrimstr("\n"))'

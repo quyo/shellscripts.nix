@@ -57,6 +57,7 @@
             "matrixsh"
             "miscsh"
             "nixbuildsh"
+            "projectsh"
             "quyosh"
             "shellscripts"
           ];

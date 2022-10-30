@@ -266,6 +266,15 @@ help = "connect to nixbuild.net shell"
 
 
 [[commands]]
+package = "projectsh"
+name = "project-init"
+category = "project.sh"
+help = "initialize a new project folder (nix, direnv, git, ...)"
+
+
+
+
+[[commands]]
 package = "quyosh"
 name = "quyo-gitpull"
 category = "quyo.sh"

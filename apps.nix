@@ -5,6 +5,7 @@
 , miscsh
 , nixsh
 , nixbuildsh
+, projectsh
 , quyosh
 }:
 
@@ -57,6 +58,8 @@ let
 
     nixbuild-remote-store = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-remote-store"; };
     nixbuild-shell = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-shell"; };
+
+    project-init = { type = "app"; program = "${projectsh}/bin/project-init"; };
 
     quyo-gitpull = { type = "app"; program = "${quyosh}/bin/quyo-gitpull"; };
     quyo-reboot = { type = "app"; program = "${quyosh}/bin/quyo-reboot"; };

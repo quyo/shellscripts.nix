@@ -57,6 +57,7 @@ with final; {
   miscsh = mkShellscriptDerivation ./misc.sh { inherit httpie less; };
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep jq nix nix-tree openssh symlinks; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
+  projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils direnv git nix openssh; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 
   shellscripts = buildEnv
@@ -70,6 +71,7 @@ with final; {
         miscsh
         nixsh
         nixbuildsh
+        projectsh
         quyosh
       ];
     };

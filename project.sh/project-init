@@ -1,155 +1,19 @@
 #!/bin/bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-#set -euo pipefail
-set -eo pipefail
+set -euo pipefail
 IFS=$'\n\t'
 
 
-cat >"default.nix" <<EOF
-let
-  lock = with (builtins); fromJSON (readFile ./flake.lock);
+# create files from template
+nix flake new -t github:Samayel/qnixpkgs#flake-project .
 
-  inherit (lock.nodes.flake-compat.locked) narHash rev;
-
-  compatSrc = fetchTarball {
-    url = "https://github.com/edolstra/flake-compat/archive/\${rev}.tar.gz";
-    sha256 = narHash;
-  };
-  compat = import compatSrc { src = ./.; };
-in
-
-compat.defaultNix
-EOF
-
-
-cat >"shell.nix" <<EOF
-let
-  lock = with (builtins); fromJSON (readFile ./flake.lock);
-
-  inherit (lock.nodes.flake-compat.locked) narHash rev;
-
-  compatSrc = fetchTarball {
-    url = "https://github.com/edolstra/flake-compat/archive/\${rev}.tar.gz";
-    sha256 = narHash;
-  };
-  compat = import compatSrc { src = ./.; };
-in
-
-compat.shellNix
-EOF
-
-
-cat >"flake.nix" <<EOF
-{
-  inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    devshell.url = "github:numtide/devshell";
-    devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
-    devshell.inputs.flake-utils.follows = "flake-utils";
-
-    flake-compat.url = "github:edolstra/flake-compat";
-    flake-compat.flake = false;
-  };
-
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, devshell, ... }:
-    {
-      overlays = {
-        default = import ./flake-overlay.nix self;
-      };
-    }
-    //
-    flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.\${x}) [ "x86_64-linux" ]) (system:
-      let
-        overlays = (builtins.attrValues self.overlays) ++ [
-          devshell.overlay
-        ];
-
-        pkgs-stable = import nixpkgs-stable { inherit overlays system; };
-        pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
-      in
-      {
-        packages = rec {
-          my-project = pkgs-stable.my-project;
-          my-project-devenv = pkgs-stable.my-project-devenv;
-          default = my-project;
-        };
-
-        apps = rec {
-          my-project = { type = "app"; program = "\${pkgs-stable.my-project}/bin/hello"; };
-          default = my-project;
-        };
-
-        devShells = {
-          default =
-            let
-              inherit (pkgs-stable.devshell) mkShell importTOML;
-            in
-            mkShell {
-              imports = [ (importTOML ./devshell.toml) ];
-            };
-        };
-
-        formatter = pkgs-stable.nixpkgs-fmt;
-      }
-    );
-}
-EOF
-
-
-cat >"flake-overlay.nix" <<EOF
-self: final: prev:
-{
-  my-project = final.hello;
-  my-project-devenv = final.buildEnv
-  {
-    name = "my-project-devenv";
-    paths = with final; [ fortune cowsay lolcat ];
-  };
-}
-EOF
-
-
-cat >"devshell.toml" <<EOF
-[devshell]
-name = "my project devshell"
-packages = [ "my-project", "my-project-devenv" ]
-
-[[commands]]
-command = "fortune | cowsay | lolcat"
-name = "slogan"
-help = "Get your slogan."
-
-[[commands]]
-package = "my-project"
-name = "hello"
-help = "Hello, world."
-category = "my-project"
-
-[[commands]]
-command = "hello --greeting='Hello, project.'"
-name = "hello-project"
-help = "Hello, project."
-category = "my-project"
-EOF
-
-
-cat >".envrc" <<EOF
-use nix
-EOF
-
-
-cat >".gitignore" <<EOF
-.direnv/
-EOF
-
-
+# create flake.lock
 nix flake metadata >/dev/null
-git init
-git add default.nix shell.nix flake.nix flake.lock flake-overlay.nix devshell.toml .envrc .gitignore
 
+# initialize git
+git init
+git add .
+
+# initialize direnv
 direnv allow

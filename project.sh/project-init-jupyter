@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# create files from template
+nix flake new -t github:tweag/jupyterWith .
+
+# create flake.lock
+nix flake metadata >/dev/null
+
+# initialize git
+git init
+git add .

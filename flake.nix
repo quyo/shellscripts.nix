@@ -53,7 +53,6 @@
         flake-pkgs-stable-mapper = lib.q.mapPkgs
           [
             "cachixsh"
-            "jupytersh"
             "matrixsh"
             "miscsh"
             "nixbuildsh"

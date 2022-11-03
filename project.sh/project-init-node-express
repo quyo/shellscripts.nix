@@ -37,11 +37,16 @@ function __update_package_json() {
 __update_package_json '.main = "./src/app.ts"'
 __update_package_json '.type = "module"'
 __update_package_json '.scripts.gulp = "gulp"'
-__update_package_json '.scripts.webpack = "webpack"'
-__update_package_json '.scripts.build = "npm-run-all gulp webpack"'
-__update_package_json '.scripts.serve = "node --experimental-specifier-resolution=node ./dist/app.js"'
-__update_package_json '.scripts.build_serve = "npm-run-all build serve"'
-__update_package_json '.scripts.dev = "nodemon --watch src -e ts,ejs --exec npm run build_serve"'
+__update_package_json '.scripts."webpack:dev" = "webpack --mode development"'
+__update_package_json '.scripts."webpack:prod" = "webpack --mode production"'
+__update_package_json '.scripts."build:dev" = "npm-run-all gulp webpack:dev"'
+__update_package_json '.scripts."build:prod" = "npm-run-all gulp webpack:prod"'
+__update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --experimental-specifier-resolution=node ./dist/app.js"'
+__update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/app.js"'
+__update_package_json '.scripts."build_serve:dev" = "npm-run-all build:dev serve:dev"'
+__update_package_json '.scripts."build_serve:prod" = "npm-run-all build:prod serve:prod"'
+__update_package_json '.scripts."dev" = "nodemon --watch src -e ts,ejs --exec npm run build_serve:dev"'
+__update_package_json '.scripts."prod" = "npm run build_serve:prod"'
 
 node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist
 EOF

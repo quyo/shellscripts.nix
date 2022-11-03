@@ -23,7 +23,7 @@ npm init -y
 
 npm i -D typescript ts-node @types/node \
          gulp gulp-typescript del \
-         webpack webpack-cli ts-loader \
+         webpack webpack-cli ts-loader raw-loader html-webpack-plugin \
          nodemon \
          npm-run-all \
          @types/express @types/express-ejs-layouts
@@ -34,15 +34,15 @@ function __update_package_json() {
   cat package.json | jq "\$@" >package.json2 ; mv package.json2 package.json
 }
 
-__update_package_json '.main = "./src/app.ts"'
+__update_package_json '.main = "./src/backend/app.ts"'
 __update_package_json '.type = "module"'
 __update_package_json '.scripts.gulp = "gulp"'
 __update_package_json '.scripts."webpack:dev" = "webpack --mode development"'
 __update_package_json '.scripts."webpack:prod" = "webpack --mode production"'
 __update_package_json '.scripts."build:dev" = "npm-run-all gulp webpack:dev"'
 __update_package_json '.scripts."build:prod" = "npm-run-all gulp webpack:prod"'
-__update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --experimental-specifier-resolution=node ./dist/app.js"'
-__update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/app.js"'
+__update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --experimental-specifier-resolution=node ./dist/backend/app.js"'
+__update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/backend/app.js"'
 __update_package_json '.scripts."build_serve:dev" = "npm-run-all build:dev serve:dev"'
 __update_package_json '.scripts."build_serve:prod" = "npm-run-all build:prod serve:prod"'
 __update_package_json '.scripts."dev" = "nodemon --watch src -e ts,ejs --exec npm run build_serve:dev"'

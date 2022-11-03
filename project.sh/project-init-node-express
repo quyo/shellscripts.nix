@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# create files from template
+nix flake new -t github:Samayel/qnixpkgs#node-express-project .
+
+# create flake.lock
+nix flake metadata >/dev/null
+
+# initialize direnv
+direnv allow
+
+
+# setup typescript, gulp, webpack and express
+cat >__stage2 <<EOF
+#! /usr/bin/env -S nix shell qnixpkgs#bash qnixpkgs#coreutils qnixpkgs#jq . -i -c bash
+
+npm init -y
+
+npm i -D typescript ts-node @types/node \
+         gulp gulp-typescript del \
+         webpack webpack-cli ts-loader \
+         nodemon \
+         npm-run-all \
+         @types/express @types/express-ejs-layouts
+
+npm i express express-ejs-layouts ejs
+
+function __update_package_json() {
+  cat package.json | jq "\$@" >package.json2 ; mv package.json2 package.json
+}
+
+__update_package_json '.main = "./src/app.ts"'
+__update_package_json '.type = "module"'
+__update_package_json '.scripts.gulp = "gulp"'
+__update_package_json '.scripts.webpack = "webpack"'
+__update_package_json '.scripts.build = "npm-run-all gulp webpack"'
+__update_package_json '.scripts.serve = "node ./dist/app.js"'
+__update_package_json '.scripts.build_serve = "npm-run-all build serve"'
+__update_package_json '.scripts.dev = "nodemon --watch src -e ts,ejs --exec npm run build_serve"'
+
+node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist
+EOF
+
+chmod +x __stage2
+./__stage2
+rm -f __stage2
+
+
+# initialize git
+git init
+git add .

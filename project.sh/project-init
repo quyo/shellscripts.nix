@@ -11,9 +11,9 @@ nix flake new -t github:Samayel/qnixpkgs#flake-project .
 # create flake.lock
 nix flake metadata >/dev/null
 
+# initialize direnv
+direnv allow
+
 # initialize git
 git init
 git add .
-
-# initialize direnv
-direnv allow

@@ -262,6 +262,12 @@ name = "project-init-jupyter"
 category = "project.sh"
 help = "initialize a new tweag/jupyterWith folder"
 
+[[commands]]
+package = "projectsh"
+name = "project-init-node-express"
+category = "project.sh"
+help = "initialize a new node project with typescript, gulp, webpack and express via npm"
+
 
 
 

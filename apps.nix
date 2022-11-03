@@ -57,6 +57,7 @@ let
 
     project-init = { type = "app"; program = "${projectsh}/bin/project-init"; };
     project-init-jupyter = { type = "app"; program = "${projectsh}/bin/project-init-jupyter"; };
+    project-init-node-express = { type = "app"; program = "${projectsh}/bin/project-init-node-express"; };
 
     quyo-gitpull = { type = "app"; program = "${quyosh}/bin/quyo-gitpull"; };
     quyo-reboot = { type = "app"; program = "${quyosh}/bin/quyo-reboot"; };

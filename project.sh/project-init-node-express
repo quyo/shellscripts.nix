@@ -39,7 +39,7 @@ __update_package_json '.type = "module"'
 __update_package_json '.scripts.gulp = "gulp"'
 __update_package_json '.scripts.webpack = "webpack"'
 __update_package_json '.scripts.build = "npm-run-all gulp webpack"'
-__update_package_json '.scripts.serve = "node ./dist/app.js"'
+__update_package_json '.scripts.serve = "node --experimental-specifier-resolution=node ./dist/app.js"'
 __update_package_json '.scripts.build_serve = "npm-run-all build serve"'
 __update_package_json '.scripts.dev = "nodemon --watch src -e ts,ejs --exec npm run build_serve"'
 

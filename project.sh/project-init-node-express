@@ -23,7 +23,7 @@ npm init -y
 
 npm i -D typescript ts-node @types/node \
          gulp gulp-typescript del \
-         webpack webpack-cli ts-loader raw-loader html-webpack-plugin \
+         webpack webpack-cli ts-loader html-webpack-plugin \
          nodemon \
          npm-run-all \
          @types/express @types/express-ejs-layouts
@@ -36,17 +36,28 @@ function __update_package_json() {
 
 __update_package_json '.main = "./src/backend/app.ts"'
 __update_package_json '.type = "module"'
-__update_package_json '.scripts.gulp = "gulp"'
-__update_package_json '.scripts."webpack:dev" = "webpack --mode development"'
-__update_package_json '.scripts."webpack:prod" = "webpack --mode production"'
-__update_package_json '.scripts."build:dev" = "npm-run-all gulp webpack:dev"'
-__update_package_json '.scripts."build:prod" = "npm-run-all gulp webpack:prod"'
-__update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --experimental-specifier-resolution=node ./dist/backend/app.js"'
-__update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/backend/app.js"'
-__update_package_json '.scripts."build_serve:dev" = "npm-run-all build:dev serve:dev"'
-__update_package_json '.scripts."build_serve:prod" = "npm-run-all build:prod serve:prod"'
-__update_package_json '.scripts."dev" = "nodemon --watch src -e ts,ejs --exec npm run build_serve:dev"'
-__update_package_json '.scripts."prod" = "npm run build_serve:prod"'
+
+__update_package_json '.scripts."clean": "gulp clean"'
+__update_package_json '.scripts."build_backend": "gulp backend"'
+__update_package_json '.scripts."build_frontend_assets": "gulp frontend-assets"'
+__update_package_json '.scripts."build_frontend_views": "gulp frontend-views"'
+__update_package_json '.scripts."build_frontend_compile:dev": "webpack --mode development"'
+__update_package_json '.scripts."build_frontend_compile:prod": "webpack --mode production"'
+__update_package_json '.scripts."build_frontend:dev": "run-p build_frontend_assets build_frontend_views build_frontend_compile:dev"'
+__update_package_json '.scripts."build_frontend:prod": "run-p build_frontend_assets build_frontend_views build_frontend_compile:prod"'
+__update_package_json '.scripts."build:dev": "npm run clean && run-p build_backend build_frontend:dev"'
+__update_package_json '.scripts."build:prod": "npm run clean && run-p build_backend build_frontend:prod"'
+__update_package_json '.scripts."serve:dev": "NODE_ENV=development node --experimental-specifier-resolution=node ./dist/backend/app.js"'
+__update_package_json '.scripts."serve:prod": "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/backend/app.js"'
+__update_package_json '.scripts."build_serve:dev": "run-s build:dev serve:dev"'
+__update_package_json '.scripts."build_serve:prod": "run-s build:prod serve:prod"'
+__update_package_json '.scripts."watch_backend": "nodemon --watch src/backend -e ts --exec run-s build_backend serve:dev"'
+__update_package_json '.scripts."watch_frontend_assets": "nodemon --watch src/frontend/static -e jpg,jpeg,png,webp --exec npm run build_frontend_assets"'
+__update_package_json '.scripts."watch_frontend_views": "nodemon --watch src/frontend/views -e ejs --exec npm run build_frontend_views"'
+__update_package_json '.scripts."watch_frontend_compile": "nodemon --watch src/frontend/static -e tsx,ts,jsx,js,css,scss,sass --exec npm run build_frontend_compile:dev"'
+__update_package_json '.scripts."watch": "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"'
+__update_package_json '.scripts."dev": "npm run watch"'
+__update_package_json '.scripts."prod": "npm run build_serve:prod"'
 
 node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist
 EOF

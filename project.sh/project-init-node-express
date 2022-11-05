@@ -24,6 +24,7 @@ npm init -y
 npm i -D typescript ts-node @types/node \
          gulp gulp-typescript del \
          webpack webpack-cli ts-loader html-webpack-plugin \
+         node-sass sass-loader style-loader css-loader mini-css-extract-plugin \
          nodemon \
          npm-run-all \
          @types/express @types/express-ejs-layouts

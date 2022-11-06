@@ -6,7 +6,7 @@ IFS=$'\n\t'
 
 
 # create files from template
-nix flake new -t github:Samayel/qnixpkgs#node-express-project .
+nix flake new -t github:Samayel/qnixpkgs#node-nest-project .
 
 rm -f package.json.example
 rm -f tsconfig.json.example
@@ -18,7 +18,7 @@ nix flake metadata >/dev/null
 direnv allow
 
 
-# setup typescript, gulp, webpack and express
+# setup typescript, gulp, webpack, sass, express and nest
 cat >__stage2 <<EOF
 #! /usr/bin/env -S nix shell qnixpkgs#bash qnixpkgs#coreutils qnixpkgs#jq . -i -c bash
 

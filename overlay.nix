@@ -16,6 +16,8 @@ let
       inherit version;
       inherit src;
 
+      preferLocalBuild = true;
+
       nativeBuildInputs = [ makeWrapper ];
 
       installPhase = ''

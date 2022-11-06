@@ -30,9 +30,10 @@ npm i -D typescript ts-node @types/node \
          node-sass sass-loader style-loader css-loader mini-css-extract-plugin \
          nodemon \
          npm-run-all \
-         @types/express @types/express-ejs-layouts @types/config
+         @types/express @types/express-ejs-layouts @types/config @types/jest
 
 npm i express express-ejs-layouts ejs \
+      @nestjs/core @nestjs/common @nestjs/platform-express @nestjs/testing rxjs reflect-metadata \
       config properties
 
 function __update_package_json() {
@@ -64,7 +65,7 @@ __update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend 
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'
 
-node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist
+node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist --experimentalDecorators true
 EOF
 
 chmod +x __stage2

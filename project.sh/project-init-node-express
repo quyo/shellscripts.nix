@@ -27,9 +27,10 @@ npm i -D typescript ts-node @types/node \
          node-sass sass-loader style-loader css-loader mini-css-extract-plugin \
          nodemon \
          npm-run-all \
-         @types/express @types/express-ejs-layouts
+         @types/express @types/express-ejs-layouts @types/config
 
-npm i express express-ejs-layouts ejs
+npm i express express-ejs-layouts ejs \
+      config properties
 
 function __update_package_json() {
   cat package.json | jq "\$@" >package.json2 ; mv package.json2 package.json
@@ -52,7 +53,7 @@ __update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --exper
 __update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/backend/app.js"'
 __update_package_json '.scripts."build_serve:dev" = "run-s build:dev serve:dev"'
 __update_package_json '.scripts."build_serve:prod" = "run-s build:prod serve:prod"'
-__update_package_json '.scripts."watch_backend" = "nodemon --watch src/backend -e ts --exec run-s build_backend serve:dev"'
+__update_package_json '.scripts."watch_backend" = "nodemon --watch config --watch src/backend -e ts,cjs,mjs,js,json,properties --exec run-s build_backend serve:dev"'
 __update_package_json '.scripts."watch_frontend_assets" = "nodemon --watch src/frontend/static -e gif,jpg,jpeg,png,webp --exec npm run build_frontend_assets"'
 __update_package_json '.scripts."watch_frontend_views" = "nodemon --watch src/frontend/views -e ejs,html,htm --exec npm run build_frontend_views"'
 __update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/frontend/static -e tsx,ts,jsx,js,css,scss,sass --exec npm run build_frontend_compile:dev"'

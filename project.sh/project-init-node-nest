@@ -26,7 +26,9 @@ npm init -y
 npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          gulp gulp-typescript del \
          webpack webpack-cli ts-loader html-webpack-plugin \
-         node-sass sass-loader style-loader css-loader mini-css-extract-plugin \
+         style-loader css-loader mini-css-extract-plugin \
+         node-sass sass-loader \
+         less less-loader \
          nodemon \
          npm-run-all \
          @types/express @types/express-ejs-layouts @types/config @types/jest
@@ -56,10 +58,10 @@ __update_package_json '.scripts."serve:dev" = "NODE_ENV=development node --exper
 __update_package_json '.scripts."serve:prod" = "NODE_ENV=production node --experimental-specifier-resolution=node ./dist/backend/app.js"'
 __update_package_json '.scripts."build_serve:dev" = "run-s build:dev serve:dev"'
 __update_package_json '.scripts."build_serve:prod" = "run-s build:prod serve:prod"'
-__update_package_json '.scripts."watch_backend" = "nodemon --watch config --watch src/backend -e ts,cjs,mjs,js,json,properties --exec run-s build_backend serve:dev"'
-__update_package_json '.scripts."watch_frontend_assets" = "nodemon --watch src/frontend/static -e gif,jpg,jpeg,png,webp --exec npm run build_frontend_assets"'
+__update_package_json '.scripts."watch_backend" = "nodemon --watch config --watch src/backend -e ts,tsx,cts,mts,js,jsx,cjs,mjs,json,properties --exec run-s build_backend serve:dev"'
+__update_package_json '.scripts."watch_frontend_assets" = "nodemon --watch src/frontend/static -e svg,webp,gif,jpg,jpeg,png,woff,ttf,otf,webm,avi,mp4,mpg,mpeg,mkv,weba,wav,mp3,aac,ogg,flac,pdf,txt,rtf,doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,json --exec npm run build_frontend_assets"'
 __update_package_json '.scripts."watch_frontend_views" = "nodemon --watch src/frontend/views -e ejs,html,htm --exec npm run build_frontend_views"'
-__update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/frontend/static -e tsx,ts,jsx,js,css,scss,sass --exec npm run build_frontend_compile:dev"'
+__update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/frontend/static -e ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less --exec npm run build_frontend_compile:dev"'
 __update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"'
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'

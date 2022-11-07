@@ -7,7 +7,6 @@ IFS=$'\n\t'
 
 # create files from template
 nix flake new -t github:Samayel/qnixpkgs#node-nest-project .
-
 rm -f package.json.example
 
 # create flake.lock
@@ -16,8 +15,12 @@ nix flake metadata >/dev/null
 # initialize direnv
 direnv allow
 
+# initialize git
+git init
+git add .
 
-# setup typescript, gulp, webpack, sass, express and nest
+
+# stage2: install all packages and tools
 cat >__stage2 <<EOF
 #! /usr/bin/env -S nix shell qnixpkgs#bash qnixpkgs#coreutils qnixpkgs#jq . -i -c bash
 
@@ -68,16 +71,23 @@ __update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/
 __update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"'
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'
-
-npm run prepare
-husky add .husky/pre-commit "lint-staged"
 EOF
 
 chmod +x __stage2
 ./__stage2
 rm -f __stage2
 
+# stage3: setup husky
+cat >__stage3 <<EOF
+#! /usr/bin/env -S nix shell . -c bash
 
-# initialize git
-git init
+npx husky install
+npx husky add .husky/pre-commit "lint-staged"
+EOF
+
+chmod +x __stage3
+./__stage3
+rm -f __stage3
+
+# add all files
 git add .

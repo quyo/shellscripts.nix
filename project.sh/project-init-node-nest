@@ -9,7 +9,6 @@ IFS=$'\n\t'
 nix flake new -t github:Samayel/qnixpkgs#node-nest-project .
 
 rm -f package.json.example
-rm -f tsconfig.json.example
 
 # create flake.lock
 nix flake metadata >/dev/null
@@ -24,7 +23,7 @@ cat >__stage2 <<EOF
 
 npm init -y
 
-npm i -D typescript ts-node @types/node \
+npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          gulp gulp-typescript del \
          webpack webpack-cli ts-loader html-webpack-plugin \
          node-sass sass-loader style-loader css-loader mini-css-extract-plugin \
@@ -64,20 +63,6 @@ __update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/
 __update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"'
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'
-
-node_modules/.bin/tsc --init \
-    --target es2017 \
-    --module es2020 \
-    --moduleResolution node \
-    --rootDir ./src \
-    --outDir ./dist \
-    --incremental true \
-    --experimentalDecorators true \
-    --emitDecoratorMetadata true \
-    --declaration true \
-    --sourceMap true \
-    --removeComments true \
-    --allowSyntheticDefaultImports true
 EOF
 
 chmod +x __stage2

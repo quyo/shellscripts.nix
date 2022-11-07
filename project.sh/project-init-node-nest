@@ -65,7 +65,19 @@ __update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend 
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'
 
-node_modules/.bin/tsc --init --target es2016 --module es2020 --moduleResolution node --rootDir ./src --outDir ./dist --experimentalDecorators true
+node_modules/.bin/tsc --init \
+    --target es2017 \
+    --module es2020 \
+    --moduleResolution node \
+    --rootDir ./src \
+    --outDir ./dist \
+    --incremental true \
+    --experimentalDecorators true \
+    --emitDecoratorMetadata true \
+    --declaration true \
+    --sourceMap true \
+    --removeComments true \
+    --allowSyntheticDefaultImports true
 EOF
 
 chmod +x __stage2

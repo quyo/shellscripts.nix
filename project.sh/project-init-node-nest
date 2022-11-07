@@ -32,7 +32,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          style-loader css-loader mini-css-extract-plugin \
          node-sass sass-loader \
          less less-loader \
-         husky lint-staged prettier \
+         husky lint-staged prettier eslint eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser \
          nodemon \
          npm-run-all \
          @types/express @types/express-ejs-layouts @types/config @types/jest
@@ -49,6 +49,8 @@ __update_package_json '.main = "./src/backend/app.ts"'
 __update_package_json '.type = "module"'
 
 __update_package_json '.scripts."prepare" = "husky install"'
+__update_package_json '.scripts."pre-commit" = "lint-staged"'
+__update_package_json '.scripts."lint" = "eslint src --fix"'
 __update_package_json '.scripts."prettify" = "prettier --write src"'
 __update_package_json '.scripts."clean" = "gulp clean"'
 __update_package_json '.scripts."build_backend" = "gulp backend"'
@@ -82,7 +84,7 @@ cat >__stage3 <<EOF
 #! /usr/bin/env -S nix shell . -c bash
 
 npx husky install
-npx husky add .husky/pre-commit "lint-staged"
+npx husky add .husky/pre-commit "npm run pre-commit"
 EOF
 
 chmod +x __stage3

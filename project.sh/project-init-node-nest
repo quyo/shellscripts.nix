@@ -33,7 +33,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          node-sass sass-loader \
          less less-loader \
          husky lint-staged prettier eslint eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-         nodemon \
+         nodemon onchange \
          npm-run-all \
          @types/express @types/express-ejs-layouts @types/config @types/jest
 
@@ -70,7 +70,8 @@ __update_package_json '.scripts."watch_backend" = "nodemon --watch config --watc
 __update_package_json '.scripts."watch_frontend_assets" = "nodemon --watch src/frontend/static -e svg,webp,gif,jpg,jpeg,png,woff,ttf,otf,webm,avi,mp4,mpg,mpeg,mkv,weba,wav,mp3,aac,ogg,flac,pdf,txt,rtf,doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,json --exec npm run build_frontend_assets"'
 __update_package_json '.scripts."watch_frontend_views" = "nodemon --watch src/frontend/views -e ejs,html,htm --exec npm run build_frontend_views"'
 __update_package_json '.scripts."watch_frontend_compile" = "nodemon --watch src/frontend/static -e ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less --exec npm run build_frontend_compile:dev"'
-__update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"'
+__update_package_json '.scripts."watch_prettier" = "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"'
+__update_package_json '.scripts."watch" = "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile watch_prettier"'
 __update_package_json '.scripts."dev" = "npm run watch"'
 __update_package_json '.scripts."prod" = "npm run build_serve:prod"'
 EOF

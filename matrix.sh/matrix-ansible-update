@@ -5,4 +5,5 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+make roles
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start

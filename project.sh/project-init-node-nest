@@ -27,8 +27,8 @@ cat >__stage2 <<EOF
 npm init -y
 
 npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
-         gulp gulp-typescript del \
-         webpack webpack-cli ts-loader html-webpack-plugin \
+         gulp gulp-typescript del @types/gulp \
+         webpack webpack-cli ts-loader html-webpack-plugin @types/webpack @types/html-webpack-plugin \
          style-loader css-loader mini-css-extract-plugin \
          node-sass sass-loader \
          less less-loader \
@@ -37,7 +37,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          stylelint stylelint-config-standard stylelint-config-standard-scss stylelint-config-prettier stylelint-config-prettier-scss stylelint-config-recommended-less stylelint-less \
          nodemon \
          npm-run-all \
-         @types/express @types/express-ejs-layouts @types/config @types/jest
+         @types/express @types/express-ejs-layouts @types/ejs @types/config
 
 npm i express express-ejs-layouts ejs \
       @nestjs/core @nestjs/common @nestjs/platform-express @nestjs/testing rxjs reflect-metadata \

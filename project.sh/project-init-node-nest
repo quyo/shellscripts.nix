@@ -33,7 +33,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          node-sass sass-loader \
          less less-loader \
          husky lint-staged prettier \
-         eslint eslint-config-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser \
+         eslint eslint-config-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-import eslint-import-resolver-typescript \
          stylelint stylelint-config-standard stylelint-config-standard-scss stylelint-config-prettier stylelint-config-prettier-scss stylelint-config-recommended-less stylelint-less \
          nodemon \
          npm-run-all \

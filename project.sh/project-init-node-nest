@@ -28,7 +28,7 @@ npm init -y
 
 npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          gulp gulp-typescript del @types/gulp \
-         webpack webpack-cli ts-loader html-webpack-plugin @types/webpack @types/html-webpack-plugin \
+         webpack webpack-cli ts-loader html-webpack-plugin copy-webpack-plugin @types/webpack @types/html-webpack-plugin \
          style-loader css-loader mini-css-extract-plugin \
          node-sass sass-loader \
          less less-loader \
@@ -69,8 +69,8 @@ npm pkg set scripts.serve:prod="NODE_ENV=production node --experimental-specifie
 npm pkg set scripts.build_serve:dev="run-s build:dev serve:dev"
 npm pkg set scripts.build_serve:prod="run-s build:prod serve:prod"
 npm pkg set scripts.watch_backend="nodemon --watch config --watch src/backend -e ts,tsx,cts,mts,js,jsx,cjs,mjs,json,properties --exec run-s prettify_backend_onchange build_backend serve:dev"
-npm pkg set scripts.watch_frontend_assets="nodemon --watch src/frontend/public -e '*' --ignore '**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less}' --exec npm run build_frontend_assets"
-npm pkg set scripts.watch_frontend_compile="nodemon --watch src/frontend/public -e ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less --exec run-s prettify_frontend_onchange build_frontend_compile:dev"
+npm pkg set scripts.watch_frontend_assets="nodemon --watch src/frontend/public -e '*' --ignore '**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less,html,htm}' --exec npm run build_frontend_assets"
+npm pkg set scripts.watch_frontend_compile="nodemon --watch src/frontend/public -e ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less,html,htm --exec run-s prettify_frontend_onchange build_frontend_compile:dev"
 npm pkg set scripts.watch_frontend_views="nodemon --watch src/frontend/views -e '*' --exec run-s prettify_frontend_onchange build_frontend_views"
 npm pkg set scripts.watch="npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile"
 npm pkg set scripts.dev="npm run watch"

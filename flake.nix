@@ -36,7 +36,7 @@
     //
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:
       let
-        inherit (pkgs-stable) lib;
+        inherit (pkgs-stable) buildEnv lib;
 
         version = lib.q.flake.version self;
 
@@ -58,7 +58,6 @@
             "nixbuildsh"
             "projectsh"
             "quyosh"
-            "shellscripts"
           ];
 
         flake-pkgs-unstable-mapper = lib.q.mapPkgs
@@ -71,11 +70,31 @@
           flake-pkgs-stable-mapper pkgs-stable "" ""
           //
           flake-pkgs-unstable-mapper pkgs-unstable "" "";
+
+        flake-pkgs-with-bundle =
+          flake-pkgs
+          //
+          {
+            shellscripts = buildEnv
+              {
+                name = "shellscripts-${version}";
+                paths = with flake-pkgs; [
+                  cachixsh
+                  dockersh
+                  matrixsh
+                  miscsh
+                  nixsh
+                  nixbuildsh
+                  projectsh
+                  quyosh
+                ];
+              };
+          };
       in
       {
-        packages = lib.q.flake.packages "shellscripts" version flake-pkgs { } ./docker.nix;
+        packages = lib.q.flake.packages "shellscripts" version flake-pkgs-with-bundle { } ./docker.nix;
 
-        apps = lib.q.flake.apps flake-pkgs ./apps.nix;
+        apps = lib.q.flake.apps flake-pkgs-with-bundle ./apps.nix;
 
         devShells = lib.q.flake.devShells ./devshell.toml;
 

@@ -61,19 +61,4 @@ with final; {
   projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils direnv git nix openssh; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
 
-  shellscripts = buildEnv
-    {
-      name = "shellscripts-${version}";
-      paths = [
-        cachixsh
-        dockersh
-        matrixsh
-        miscsh
-        nixsh
-        nixbuildsh
-        projectsh
-        quyosh
-      ];
-    };
-
 }

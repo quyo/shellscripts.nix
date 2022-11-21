@@ -64,19 +64,35 @@ with final; {
   q = (prev.q or { })
     //
     {
-      shellscripts = {
-        buildEnv = pkgs: buildEnv
+      shellscripts = rec {
+        buildStableEnv = pkgs: buildEnv
           {
-            name = "shellscripts-${version}";
+            name = "shellscripts-stable-${version}";
             paths = with pkgs; [
               cachixsh
-              dockersh
               matrixsh
               miscsh
-              nixsh
               nixbuildsh
               projectsh
               quyosh
+            ];
+          };
+
+        buildUnstableEnv = pkgs: buildEnv
+          {
+            name = "shellscripts-unstable-${version}";
+            paths = with pkgs; [
+              dockersh
+              nixsh
+            ];
+          };
+
+        buildFullEnv = pkgs: buildEnv
+          {
+            name = "shellscripts-${version}";
+            paths = [
+              (buildStableEnv pkgs)
+              (buildUnstableEnv pkgs)
             ];
           };
       };

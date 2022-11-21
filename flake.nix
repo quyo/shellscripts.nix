@@ -75,7 +75,7 @@
           flake-pkgs
           //
           {
-            shellscripts = q.shellscripts.buildEnv flake-pkgs;
+            shellscripts = q.shellscripts.buildFullEnv flake-pkgs;
           };
       in
       {

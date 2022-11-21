@@ -27,25 +27,7 @@
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, devshell, qnixpkgs, ... }:
-    let
-      buildShellscriptsEnv = buildEnv: version: pkgs: buildEnv
-        {
-          name = "shellscripts-${version}";
-          paths = with pkgs; [
-            cachixsh
-            dockersh
-            matrixsh
-            miscsh
-            nixsh
-            nixbuildsh
-            projectsh
-            quyosh
-          ];
-        };
-    in
     {
-      inherit buildShellscriptsEnv;
-
       overlays = {
         default = import ./overlay.nix self;
         overrides = import ./overrides.nix self;
@@ -54,7 +36,7 @@
     //
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:
       let
-        inherit (pkgs-stable) buildEnv lib;
+        inherit (pkgs-stable) buildEnv lib q;
 
         version = lib.q.flake.version self;
 
@@ -93,7 +75,7 @@
           flake-pkgs
           //
           {
-            shellscripts = buildShellscriptsEnv buildEnv version flake-pkgs;
+            shellscripts = q.shellscripts.buildEnv flake-pkgs;
           };
       in
       {

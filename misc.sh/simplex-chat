@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix shell github:simplex-chat/simplex-chat/v4.2.1#exe:simplex-chat --quiet -c simplex-chat
+nix shell github:simplex-chat/simplex-chat/v4.2.1#exe:simplex-chat --quiet -c simplex-chat --server smp://Fb9PmbpO7dbkh027Bbm6YUCx3lCYz71muoFmnf4gSGM=@simplex-smp.app.quyo.net "$@"

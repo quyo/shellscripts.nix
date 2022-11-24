@@ -54,8 +54,10 @@ with final; {
   cachixsh = mkShellscriptDerivation ./cachix.sh ({ inherit findutils git jq nix openssh; }
     // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit cachix; });
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
-  matrixsh = mkShellscriptDerivation ./matrix.sh { inherit coreutils gnused httpie less; };
-  miscsh = mkShellscriptDerivation ./misc.sh { inherit git httpie less nix openssh; };
+  matrixsh = mkShellscriptDerivation ./matrix.sh ({ inherit coreutils gnused less; }
+    // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit httpie; });
+  miscsh = mkShellscriptDerivation ./misc.sh ({ inherit git less nix openssh; }
+    // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit httpie; });
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep jq nix nix-tree openssh symlinks; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
   projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils direnv git nix openssh; };

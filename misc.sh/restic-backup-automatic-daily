@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-restic-backup /
+restic-backup --tag automatic --tag daily /

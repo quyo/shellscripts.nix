@@ -5,6 +5,13 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+PID=$(pidof restic || true)
+
+if [ ! -z ${PID} ]; then
+  echo "restic is already running, execution cancelled."
+  exit 1
+fi
+
 restic backup \
   --repository-file "$HOME/.config/restic/repository.eu" \
   --password-file "$HOME/.config/restic/passwd" \
@@ -14,6 +21,14 @@ restic backup \
   --exclude-if-present .restic-ignore \
   --cleanup-cache \
   "$@"
+
+
+PID=$(pidof restic || true)
+
+if [ ! -z ${PID} ]; then
+  echo "restic is already running, execution cancelled."
+  exit 1
+fi
 
 restic backup \
   --repository-file "$HOME/.config/restic/repository.us" \

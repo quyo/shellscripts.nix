@@ -153,7 +153,7 @@ help = "start a custom backup via restic"
 
 [[commands]]
 package = "miscsh"
-name = "restic-backup-all"
+name = "restic-backup-automatic-daily"
 category = "misc.sh"
 help = "start a full system backup via restic"
 

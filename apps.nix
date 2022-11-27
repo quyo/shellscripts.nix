@@ -35,6 +35,7 @@ let
 
     http-less = { type = "app"; program = "${miscsh}/bin/http-less"; };
     https-less = { type = "app"; program = "${miscsh}/bin/https-less"; };
+    restic-backup-all = { type = "app"; program = "${miscsh}/bin/restic-backup-all"; };
     simplex-chat = { type = "app"; program = "${miscsh}/bin/simplex-chat"; };
 
     nix-cache-upload = { type = "app"; program = "${nixsh}/bin/nix-cache-upload"; };

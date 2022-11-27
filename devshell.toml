@@ -147,6 +147,12 @@ help = "pretty-print a https request and the corresponding response"
 
 [[commands]]
 package = "miscsh"
+name = "restic-backup-all"
+category = "misc.sh"
+help = "start a full system backup via restic"
+
+[[commands]]
+package = "miscsh"
 name = "simplex-chat"
 category = "misc.sh"
 help = "run simplex-chat application"

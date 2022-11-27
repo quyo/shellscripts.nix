@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+restic backup \
+  --repository-file "$HOME/.config/restic/repository.eu" \
+  --password-file "$HOME/.config/restic/passwd" \
+  --exclude-file "$HOME/.config/restic/exclude.global" \
+  --exclude-file "$HOME/.config/restic/exclude.local" \
+  --exclude-if-present .duplicity-ignore \
+  --exclude-if-present .restic-ignore \
+  --cleanup-cache \
+  /
+
+restic backup \
+  --repository-file "$HOME/.config/restic/repository.us" \
+  --password-file "$HOME/.config/restic/passwd" \
+  --exclude-file "$HOME/.config/restic/exclude.global" \
+  --exclude-file "$HOME/.config/restic/exclude.local" \
+  --exclude-if-present .duplicity-ignore \
+  --exclude-if-present .restic-ignore \
+  --cleanup-cache \
+  /

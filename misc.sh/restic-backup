@@ -5,6 +5,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+set +e
+
 PID=$(pidof restic || true)
 
 if [ ! -z ${PID} ]; then

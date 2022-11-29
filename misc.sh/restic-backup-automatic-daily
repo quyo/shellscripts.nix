@@ -9,4 +9,4 @@ cronic restic-backup \
     --tag automatic \
     --tag daily \
     --files-from "$HOME/.config/restic/paths-to-backup.daily.global" \
-    --files-from "$HOME/.config/restic/paths-to-backup.daily.local"
+    --files-from "$HOME/.config/restic/paths-to-backup.daily.local" "$@"

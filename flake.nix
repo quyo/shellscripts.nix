@@ -64,6 +64,7 @@
           [
             "dockersh"
             "nixsh"
+            "resticsh"
           ];
 
         flake-pkgs =

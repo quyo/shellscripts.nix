@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+set +e
+
+while LANG=C IFS= read -r REPO ; do
+
+  PID=$(pidof restic || true)
+
+  if [ ! -z ${PID} ]; then
+    echo "restic is already running, execution cancelled."
+    exit 1
+  fi
+
+  restic \
+    --repo "$REPO" \
+    --password-file "$HOME/.config/restic/passwd" \
+    "$@"
+
+done <"$HOME/.config/restic/repository"
+
+set -e

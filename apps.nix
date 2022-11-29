@@ -6,6 +6,7 @@
 , nixbuildsh
 , projectsh
 , quyosh
+, resticsh
 }:
 
 let
@@ -35,9 +36,6 @@ let
 
     http-less = { type = "app"; program = "${miscsh}/bin/http-less"; };
     https-less = { type = "app"; program = "${miscsh}/bin/https-less"; };
-    restic-backup = { type = "app"; program = "${miscsh}/bin/restic-backup"; };
-    restic-backup-automatic-daily = { type = "app"; program = "${miscsh}/bin/restic-backup-automatic-daily"; };
-    restic-backup-automatic-hourly = { type = "app"; program = "${miscsh}/bin/restic-backup-automatic-hourly"; };
     simplex-chat = { type = "app"; program = "${miscsh}/bin/simplex-chat"; };
 
     nix-cache-upload = { type = "app"; program = "${nixsh}/bin/nix-cache-upload"; };
@@ -66,6 +64,11 @@ let
     quyo-gitpull = { type = "app"; program = "${quyosh}/bin/quyo-gitpull"; };
     quyo-reboot = { type = "app"; program = "${quyosh}/bin/quyo-reboot"; };
     quyo-runall = { type = "app"; program = "${quyosh}/bin/quyo-runall"; };
+
+    restic-backup = { type = "app"; program = "${resticsh}/bin/restic-backup"; };
+    restic-backup-automatic-daily = { type = "app"; program = "${resticsh}/bin/restic-backup-automatic-daily"; };
+    restic-backup-automatic-hourly = { type = "app"; program = "${resticsh}/bin/restic-backup-automatic-hourly"; };
+    restic-exec = { type = "app"; program = "${resticsh}/bin/restic-exec"; };
   };
 in
 

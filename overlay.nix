@@ -62,6 +62,7 @@ with final; {
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
   projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils direnv git nix openssh; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
+  resticsh = mkShellscriptDerivation ./restic.sh { inherit restic; };
 
   q = (prev.q or { })
     //
@@ -86,6 +87,7 @@ with final; {
             paths = with pkgs; [
               dockersh
               nixsh
+              resticsh
             ];
           };
 

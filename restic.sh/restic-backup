@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+restic-exec backup \
+  --exclude-file "$HOME/.config/restic/exclude.global" \
+  --exclude-file "$HOME/.config/restic/exclude.local" \
+  --exclude-if-present .duplicity-ignore \
+  --exclude-if-present .restic-ignore \
+  --cleanup-cache \
+  "$@"

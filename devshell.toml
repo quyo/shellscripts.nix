@@ -147,24 +147,6 @@ help = "pretty-print a https request and the corresponding response"
 
 [[commands]]
 package = "miscsh"
-name = "restic-backup"
-category = "misc.sh"
-help = "start a custom backup via restic"
-
-[[commands]]
-package = "miscsh"
-name = "restic-backup-automatic-daily"
-category = "misc.sh"
-help = "start a daily backup via restic"
-
-[[commands]]
-package = "miscsh"
-name = "restic-backup-automatic-hourly"
-category = "misc.sh"
-help = "start a hourly backup via restic"
-
-[[commands]]
-package = "miscsh"
 name = "simplex-chat"
 category = "misc.sh"
 help = "run simplex-chat application"
@@ -312,3 +294,30 @@ package = "quyosh"
 name = "quyo-runall"
 category = "quyo.sh"
 help = "run a command on all systems of the quyo federation"
+
+
+
+
+[[commands]]
+package = "resticsh"
+name = "restic-backup"
+category = "restic.sh"
+help = "start a custom backup via restic"
+
+[[commands]]
+package = "resticsh"
+name = "restic-backup-automatic-daily"
+category = "restic.sh"
+help = "start a daily backup via restic"
+
+[[commands]]
+package = "resticsh"
+name = "restic-backup-automatic-hourly"
+category = "restic.sh"
+help = "start a hourly backup via restic"
+
+[[commands]]
+package = "resticsh"
+name = "restic-exec"
+category = "restic.sh"
+help = "run custom command with default options via restic"

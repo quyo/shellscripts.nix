@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+cronic restic-backup \
+    --tag automatic \
+    --tag hourly \
+    --files-from "$HOME/.config/restic/paths-to-backup.hourly.global" \
+    --files-from "$HOME/.config/restic/paths-to-backup.hourly.local"

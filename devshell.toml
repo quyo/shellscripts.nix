@@ -155,7 +155,13 @@ help = "start a custom backup via restic"
 package = "miscsh"
 name = "restic-backup-automatic-daily"
 category = "misc.sh"
-help = "start a full system backup via restic"
+help = "start a daily backup via restic"
+
+[[commands]]
+package = "miscsh"
+name = "restic-backup-automatic-hourly"
+category = "misc.sh"
+help = "start a hourly backup via restic"
 
 [[commands]]
 package = "miscsh"

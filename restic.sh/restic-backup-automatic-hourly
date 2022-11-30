@@ -5,8 +5,12 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-cronic restic-backup \
+if [ -s "$HOME/.config/restic/paths-to-backup.hourly.global" -o -s "$HOME/.config/restic/paths-to-backup.hourly.local" ]; then
+
+  cronic restic-backup \
     --tag automatic \
     --tag hourly \
     --files-from "$HOME/.config/restic/paths-to-backup.hourly.global" \
     --files-from "$HOME/.config/restic/paths-to-backup.hourly.local" "$@"
+
+fi

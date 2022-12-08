@@ -9,7 +9,7 @@ RESTIC_PASSWORD_FILE=${RESTIC_PASSWORD_FILE:-$HOME/.config/restic/password}
 
 set +e
 
-while LANG=C IFS= read -r REPO ; do
+while LANG=C IFS=\  read -r REPO KEY; do
 
   PID=$(pidof restic || true)
 
@@ -18,7 +18,7 @@ while LANG=C IFS= read -r REPO ; do
     exit 1
   fi
 
-  restic --repo "$REPO" "$@"
+  restic --repo "${REPO}" --key-hint=${KEY} "$@"
 
 done <"${RESTIC_MULTIREPOSITORY_FILE:-$HOME/.config/restic/repository}"
 

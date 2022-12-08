@@ -18,7 +18,7 @@ while LANG=C IFS=\  read -r REPO KEY; do
     exit 1
   fi
 
-  restic --repo "${REPO}" --key-hint=${KEY} "$@"
+  restic --repo "${REPO}" --password-file "${RESTIC_PASSWORD_FILE}" --key-hint=${KEY} "$@"
 
 done <"${RESTIC_MULTIREPOSITORY_FILE:-$HOME/.config/restic/repository}"
 

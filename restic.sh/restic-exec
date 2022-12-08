@@ -21,6 +21,6 @@ while LANG=C IFS= read -r REPO ; do
     --password-file "$HOME/.config/restic/passwd" \
     "$@"
 
-done <"$HOME/.config/restic/repository"
+done <"${RESTIC_MULTIREPOSITORY_FILE:-$HOME/.config/restic/repository}"
 
 set -e

@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-RESTIC_PASSWORD_FILE=${RESTIC_PASSWORD_FILE:-$HOME/.config/restic/password}
+RESTIC_PASSWORD_FILE=${RESTIC_PASSWORD_FILE:-$HOME/.config/restic/passwd}
 
 set +e
 

@@ -53,18 +53,18 @@
         flake-pkgs-stable-mapper = lib.q.mapPkgs
           [
             "cachixsh"
+            "dockersh"
             "matrixsh"
             "miscsh"
+            "nixsh"
             "nixbuildsh"
             "projectsh"
             "quyosh"
+            "resticsh"
           ];
 
         flake-pkgs-unstable-mapper = lib.q.mapPkgs
           [
-            "dockersh"
-            "nixsh"
-            "resticsh"
           ];
 
         flake-pkgs =

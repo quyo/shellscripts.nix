@@ -73,11 +73,14 @@ with final; {
             name = "shellscripts-stable-${version}";
             paths = with pkgs; [
               cachixsh
+              dockersh
               matrixsh
               miscsh
+              nixsh
               nixbuildsh
               projectsh
               quyosh
+              resticsh
             ];
           };
 
@@ -85,9 +88,6 @@ with final; {
           {
             name = "shellscripts-unstable-${version}";
             paths = with pkgs; [
-              dockersh
-              nixsh
-              resticsh
             ];
           };
 

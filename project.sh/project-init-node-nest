@@ -28,7 +28,7 @@ npm init -y
 
 npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          gulp gulp-typescript del @types/gulp \
-         webpack webpack-cli ts-loader html-webpack-plugin copy-webpack-plugin @types/webpack @types/html-webpack-plugin \
+         webpack webpack-cli ts-loader html-webpack-plugin copy-webpack-plugin terser-webpack-plugin @types/webpack @types/html-webpack-plugin \
          babel-loader @babel/core @babel/preset-env @babel/preset-typescript \
          style-loader css-loader mini-css-extract-plugin css-minimizer-webpack-plugin \
          postcss postcss-loader postcss-import postcss-preset-env \

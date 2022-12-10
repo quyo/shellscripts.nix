@@ -8,6 +8,7 @@ IFS=$'\n\t'
 # create files from template
 nix flake new -t github:Samayel/qnixpkgs#node-nest-project .
 rm -f package.json.example
+rm -f package-lock.json.example
 
 # create flake.lock
 nix flake metadata >/dev/null

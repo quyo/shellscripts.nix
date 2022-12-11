@@ -32,7 +32,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          webpack webpack-cli ts-loader html-webpack-plugin copy-webpack-plugin terser-webpack-plugin @types/webpack @types/html-webpack-plugin \
          babel-loader @babel/core @babel/preset-env @babel/preset-typescript \
          style-loader css-loader mini-css-extract-plugin css-minimizer-webpack-plugin \
-         postcss postcss-loader postcss-import postcss-preset-env \
+         postcss postcss-loader autoprefixer postcss-import postcss-preset-env \
          node-sass sass-loader \
          less less-loader \
          husky lint-staged prettier \
@@ -40,11 +40,12 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          stylelint stylelint-config-standard stylelint-config-standard-scss stylelint-config-prettier stylelint-config-prettier-scss stylelint-config-recommended-less stylelint-less \
          nodemon \
          npm-run-all \
-         @types/express @types/express-ejs-layouts @types/ejs @types/config
+         @types/bootstrap @types/config @types/ejs @types/express @types/express-ejs-layouts @types/jquery
 
 npm i express express-ejs-layouts ejs \
       @nestjs/core @nestjs/common @nestjs/platform-express @nestjs/testing rxjs reflect-metadata \
-      config properties
+      config properties \
+      bootstrap bootstrap-icons @popperjs/core jquery
 
 npm pkg set main="./src/backend/app.ts"
 npm pkg set type="module"

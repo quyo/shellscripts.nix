@@ -1,7 +1,7 @@
 self: final: prev:
 
 let
-  qnixpkgs = "github:Samayel/qnixpkgs/${self.inputs.qnixpkgs.rev}";
+  qnixpkgs = "github:quyo/qnixpkgs/${self.inputs.qnixpkgs.rev}";
   version = final.lib.q.flake.version self;
 
   mkShellscriptDerivation = src: deps:

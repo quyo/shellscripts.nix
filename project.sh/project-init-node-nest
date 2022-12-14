@@ -40,7 +40,7 @@ npm i -D typescript ts-node @types/node @tsconfig/node18-strictest-esm \
          stylelint stylelint-config-standard stylelint-config-standard-scss stylelint-config-prettier stylelint-config-prettier-scss stylelint-config-recommended-less stylelint-less \
          nodemon \
          npm-run-all \
-         @types/axios @types/bootstrap @types/cache-manager @types/compression @types/config @types/cookie-parser @types/cron @types/ejs @types/express @types/express-ejs-layouts @types/express-session @types/joi @types/jquery @types/js-yaml
+         @types/bootstrap @types/cache-manager @types/compression @types/config @types/cookie-parser @types/cron @types/ejs @types/express @types/express-ejs-layouts @types/express-session @types/jquery @types/js-yaml
 
 npm i express express-ejs-layouts express-session ejs \
       @nestjs/axios @nestjs/common @nestjs/config @nestjs/core @nestjs/event-emitter @nestjs/platform-express @nestjs/schedule @nestjs/testing axios cache-manager class-transformer class-validator compression cookie-parser joi js-yaml rxjs reflect-metadata \

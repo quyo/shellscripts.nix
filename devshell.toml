@@ -270,9 +270,9 @@ help = "initialize a new tweag/jupyterWith folder"
 
 [[commands]]
 package = "projectsh"
-name = "project-init-node-express"
+name = "project-init-node-nest"
 category = "project.sh"
-help = "initialize a new node project with typescript, gulp, webpack and express via npm"
+help = "initialize a new node project with typescript, gulp, webpack and nest via npm"
 
 
 

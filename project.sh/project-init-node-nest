@@ -23,7 +23,7 @@ git add .
 
 # stage2: install all packages and tools
 cat >__stage2 <<EOF
-#! /usr/bin/env -S nix shell qnixpkgs#bash qnixpkgs#coreutils . -i -c bash
+#! /usr/bin/env -S nix shell github:quyo/qnixpkgs#bash github:quyo/qnixpkgs#coreutils . -i -c bash
 
 npm init -y
 

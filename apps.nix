@@ -48,6 +48,7 @@ let
     nix-info = { type = "app"; program = "${nixsh}/bin/nix-info"; };
     nix-list-packages = { type = "app"; program = "${nixsh}/bin/nix-list-packages"; };
     nix-list-subpackages = { type = "app"; program = "${nixsh}/bin/nix-list-subpackages"; };
+    nix-search = { type = "app"; program = "${nixsh}/bin/nix-search"; };
     nix-setup-userscope-cocalc = { type = "app"; program = "${nixsh}/bin/nix-setup-userscope-cocalc"; };
     nix-system-cleanup = { type = "app"; program = "${nixsh}/bin/nix-system-cleanup"; };
     nix-system-update = { type = "app"; program = "${nixsh}/bin/nix-system-update"; };

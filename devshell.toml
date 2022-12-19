@@ -200,19 +200,25 @@ help = "create on-the-fly a nixpkgs channel from an arbitrary flake and run any 
 package = "nixsh"
 name = "nix-info"
 category = "nix.sh"
-help = "print name and description of a nixpkgs attribute"
+help = "print name and description of a (q)nixpkgs attribute"
 
 [[commands]]
 package = "nixsh"
 name = "nix-list-packages"
 category = "nix.sh"
-help = "list all matching packages in nixpkgs (e.g. nix-list-packages '.*aa.*')"
+help = "list all matching packages in (q)nixpkgs (e.g. nix-list-packages '.*aa.*')"
 
 [[commands]]
 package = "nixsh"
 name = "nix-list-subpackages"
 category = "nix.sh"
-help = "list all matching subpackages of an attribute in nixpkgs (e.g. nix-list-subpackages python3Packages '.*aa.*')"
+help = "list all matching subpackages of an attribute in (q)nixpkgs (e.g. nix-list-subpackages python3Packages '.*aa.*')"
+
+[[commands]]
+package = "nixsh"
+name = "nix-search"
+category = "nix.sh"
+help = "search for package names and descriptions in qnixpkgs"
 
 [[commands]]
 package = "nixsh"

@@ -6,24 +6,24 @@ IFS=$' \n\t'
 
 
 QUYO_HOSTS="\
-    vpn.fra1 \
-    vpn.nyc3 \
-    vpn.ams3 \
-    vpn.sgp1 \
-    vpn.sfo2 \
-    vpn.tor1 \
-    vpn.lon1 \
-    vpn.blr1 \
-    dox.fra1 \
-    dox.ams3 \
-    ns.fra1 \
-    mx.fra1 \
-    rancher.fra1 \
-    matrix.fra1 \
-    docker.fra1"
+    fra1-vpn \
+    nyc3-vpn \
+    ams3-vpn \
+    sgp1-vpn \
+    sfo2-vpn \
+    tor1-vpn \
+    lon1-vpn \
+    blr1-vpn \
+    fra1-dox \
+    ams3-dox \
+    fra1-ns \
+    fra1-mx \
+    fra1-rancher \
+    fra1-matrix \
+    fra1-docker"
 
 for host in ${QUYO_HOSTS}
 do
-    ssh -4 -t root@${host}.do.quyo.net bash -ilc "'$@'"
+    ssh -4 -t root@do-${host} bash -ilc "'$@'"
     echo -e '\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n'
 done

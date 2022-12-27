@@ -6,19 +6,8 @@ IFS=$' \n\t'
 
 
 QUYO_HOSTS="\
-    fra1-vpn \
-    nyc3-vpn \
-    ams3-vpn \
-    sgp1-vpn \
-    sfo2-vpn \
-    tor1-vpn \
-    lon1-vpn \
-    blr1-vpn \
-    fra1-dox \
-    ams3-dox \
     fra1-ns \
     fra1-mx \
-    fra1-rancher \
     fra1-matrix \
     fra1-docker"
 

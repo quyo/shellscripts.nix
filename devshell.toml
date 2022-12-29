@@ -280,6 +280,12 @@ name = "project-init-node-nest"
 category = "project.sh"
 help = "initialize a new node project with typescript, gulp, webpack and nest via npm"
 
+[[commands]]
+package = "projectsh"
+name = "project-setup-fly-app-domain"
+category = "project.sh"
+help = "setup project subdomain at DigitalOcean and add TLS certs to Fly app"
+
 
 
 

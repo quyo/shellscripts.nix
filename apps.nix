@@ -59,6 +59,7 @@ let
     nixbuild-shell = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-shell"; };
 
     project-init = { type = "app"; program = "${projectsh}/bin/project-init"; };
+    project-init-caddy = { type = "app"; program = "${projectsh}/bin/project-init-caddy"; };
     project-init-jupyter = { type = "app"; program = "${projectsh}/bin/project-init-jupyter"; };
     project-init-node-nest = { type = "app"; program = "${projectsh}/bin/project-init-node-nest"; };
     project-setup-fly-app-domain = { type = "app"; program = "${projectsh}/bin/project-setup-fly-app-domain"; };

@@ -270,6 +270,12 @@ help = "initialize a new project folder (nix, direnv, git, ...)"
 
 [[commands]]
 package = "projectsh"
+name = "project-init-caddy"
+category = "project.sh"
+help = "initialize a new caddy project with php support"
+
+[[commands]]
+package = "projectsh"
 name = "project-init-jupyter"
 category = "project.sh"
 help = "initialize a new tweag/jupyterWith folder"

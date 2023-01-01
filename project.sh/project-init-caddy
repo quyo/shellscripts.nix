@@ -10,8 +10,10 @@ nix flake new -t github:quyo/qnixpkgs#caddy-project .
 
 chmod +x ./cbuild.sh
 chmod +x ./ccompose.sh
+
 chmod +x ./flylaunch.sh
 chmod +x ./flypush.sh
+chmod +x ./flysetup.sh
 
 # create flake.lock
 nix flake metadata >/dev/null

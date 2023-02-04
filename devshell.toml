@@ -222,6 +222,12 @@ help = "search for package names and descriptions in qnixpkgs"
 
 [[commands]]
 package = "nixsh"
+name = "nix-store-repair"
+category = "nix.sh"
+help = "verify and repair the local Nix store"
+
+[[commands]]
+package = "nixsh"
 name = "nix-system-cleanup"
 category = "nix.sh"
 help = "remove obsolete gcroots and run garbage collection"

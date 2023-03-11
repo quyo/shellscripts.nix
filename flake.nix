@@ -47,8 +47,20 @@
           qnixpkgs.overlays.qshell
         ];
 
-        pkgs-stable = import nixpkgs-stable { inherit overlays system; };
-        pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
+        importChannel = { name, path, overlays }:
+        let
+          dir = /home/runner/.nix-defexpr/channels/${path};
+          sources = import /${dir}/nix/sources.nix;
+          channel = sources.${name};
+          overlay = (import /${dir}/overlay.nix) { inherit sources; };
+        in
+          import channel { overlays = [ overlay ] ++ overlays; };
+
+        importChannel2211 = { overlays }: importChannel { inherit overlays; name = "nixpkgs-22.11"; path = "nixpkgs-stable-22_11"; };
+        importChannelUnstable = { overlays }: importChannel { inherit overlays; name = "nixpkgs-unstable"; path = "nixpkgs-unstable"; };
+
+        pkgs-stable = importChannel2211 { inherit overlays; };
+        pkgs-unstable = importChannelUnstable { inherit overlays; };
 
         flake-pkgs-stable-mapper = lib.q.mapPkgs
           [

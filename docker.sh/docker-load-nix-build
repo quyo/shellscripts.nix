@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-docker load < "$(nix --repeat 0 build --no-link --print-out-paths "$1")"
+docker load < "$(nix path-info --json "$1" | jq -r '.[].path')"

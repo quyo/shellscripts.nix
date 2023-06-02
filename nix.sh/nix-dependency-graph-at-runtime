@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix-store -q --tree "$(nix --repeat 0 build --no-link --print-out-paths "$1")"
+nix-store -q --tree "$(nix path-info --json "$1" | jq -r '.[].path')"

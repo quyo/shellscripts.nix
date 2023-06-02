@@ -69,6 +69,7 @@ jobs:
       - name: Load and push docker image (shellscripts.nix:latest)
         working-directory: .
         run: |
+          nix build .#docker
           nix run github:quyo/shellscripts.nix#docker-load-nix-build .#docker
           docker push quyo/shellscripts.nix:latest
           docker tag quyo/shellscripts.nix:latest git.quyo.net/quyo/shellscripts.nix:latest

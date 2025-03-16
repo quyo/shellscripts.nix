@@ -62,7 +62,9 @@ let
     project-init = { type = "app"; program = "${projectsh}/bin/project-init"; };
     project-init-caddy = { type = "app"; program = "${projectsh}/bin/project-init-caddy"; };
     project-init-jupyter = { type = "app"; program = "${projectsh}/bin/project-init-jupyter"; };
+    project-init-minimal = { type = "app"; program = "${projectsh}/bin/project-init-minimal"; };
     project-init-node-nest = { type = "app"; program = "${projectsh}/bin/project-init-node-nest"; };
+    project-init-simple = { type = "app"; program = "${projectsh}/bin/project-init-simple"; };
     project-setup-fly-app-domain = { type = "app"; program = "${projectsh}/bin/project-setup-fly-app-domain"; };
 
     quyo-gitpull = { type = "app"; program = "${quyosh}/bin/quyo-gitpull"; };

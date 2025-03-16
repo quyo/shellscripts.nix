@@ -288,9 +288,21 @@ help = "initialize a new tweag/jupyterWith folder"
 
 [[commands]]
 package = "projectsh"
+name = "project-init-minimal"
+category = "project.sh"
+help = "initialize a new minimal flake folder"
+
+[[commands]]
+package = "projectsh"
 name = "project-init-node-nest"
 category = "project.sh"
 help = "initialize a new node project with typescript, gulp, webpack and nest via npm"
+
+[[commands]]
+package = "projectsh"
+name = "project-init-simple"
+category = "project.sh"
+help = "initialize a new simple flake folder"
 
 [[commands]]
 package = "projectsh"

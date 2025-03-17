@@ -5,6 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+nix build "$1"
 nix path-info --json "$1" \
-  | jq -r '.[].path' \
+  | jq -r 'keys[0]' \
   | cachix push quyo-public

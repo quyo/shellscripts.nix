@@ -5,4 +5,4 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix flake update "$HOME/.config/nix/userprofile-local"
+nix flake update --flake "$HOME/.config/nix/userprofile-local"

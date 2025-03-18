@@ -83,7 +83,7 @@
 
         apps = lib.q.flake.apps flake-pkgs-with-bundle ./apps.nix;
 
-        devShells = lib.q.flake.devShells ./devshell.toml;
+        # devShells = lib.q.flake.devShells ./devshell.toml;
 
         formatter = lib.q.flake.formatter;
       }

@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# create devshell
+devenv init
+
+# initialize git
+git init
+git add .
+
+# override devenv.nix and devenv.yaml
+cat <<'EOF'> ./devenv.nix
+{ pkgs, lib, config, inputs, ... }:
+
+let
+  # nixpkgs = import inputs.nixpkgs { system = pkgs.stdenv.system; };
+  qnixpkgs = inputs.qnixpkgs.legacyPackages.${pkgs.stdenv.system};
+in
+{
+  # https://devenv.sh/basics/
+  env.GREET = "devenv";
+
+  # https://devenv.sh/packages/
+  packages = [
+    pkgs.git
+    qnixpkgs.cronic
+  ];
+
+  # https://devenv.sh/languages/
+  # languages.rust.enable = true;
+
+  # https://devenv.sh/processes/
+  # processes.cargo-watch.exec = "cargo-watch";
+
+  # https://devenv.sh/services/
+  # services.postgres.enable = true;
+
+  # https://devenv.sh/scripts/
+  scripts.hello.exec = ''
+    echo hello from $GREET
+  '';
+
+  enterShell = ''
+    hello
+    git --version
+  '';
+
+  # https://devenv.sh/tasks/
+  # tasks = {
+  #   "myproj:setup".exec = "mytool build";
+  #   "devenv:enterShell".after = [ "myproj:setup" ];
+  # };
+
+  # https://devenv.sh/tests/
+  enterTest = ''
+    echo "Running tests"
+    git --version | grep --color=auto "${pkgs.git.version}"
+  '';
+
+  # https://devenv.sh/git-hooks/
+  # git-hooks.hooks.shellcheck.enable = true;
+
+  # See full reference at https://devenv.sh/reference/options/
+}
+EOF
+
+cat <<'EOF'> ./devenv.yaml
+# yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+  qnixpkgs:
+    url: github:quyo/qnixpkgs
+    inputs:
+      qnixpkgs:
+        follows: qnixpkgs
+
+# If you're using non-OSS software, you can set allowUnfree to true.
+# allowUnfree: true
+
+# If you're willing to use a package that's vulnerable
+# permittedInsecurePackages:
+#  - "openssl-1.1.1w"
+
+# If you have more than one devenv you can merge them
+#imports:
+# - ./backend
+EOF
+
+git diff devenv.nix devenv.yaml

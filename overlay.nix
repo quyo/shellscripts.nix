@@ -60,7 +60,7 @@ with final; {
     // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit httpie; });
   nixsh = mkShellscriptDerivation ./nix.sh { inherit coreutils findutils git gnugrep jq nix nix-tree openssh symlinks; };
   nixbuildsh = mkShellscriptDerivation ./nixbuild.sh { inherit git nix openssh rlwrap; };
-  projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils direnv git nix openssh; };
+  projectsh = mkShellscriptDerivation ./project.sh { inherit coreutils devenv direnv git nix openssh; };
   quyosh = mkShellscriptDerivation ./quyo.sh { inherit coreutils openssh; };
   resticsh = mkShellscriptDerivation ./restic.sh { inherit restic; };
 
@@ -78,7 +78,6 @@ with final; {
               miscsh
               nixsh
               nixbuildsh
-              projectsh
               quyosh
               resticsh
             ];
@@ -88,6 +87,7 @@ with final; {
           {
             name = "shellscripts-unstable-${version}";
             paths = with pkgs; [
+              projectsh
             ];
           };
 

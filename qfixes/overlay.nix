@@ -16,4 +16,6 @@ in
         "-Dneon=disabled"
       ];
     });
+
+    time-compat = dontCheck prev.time-compat;
   }

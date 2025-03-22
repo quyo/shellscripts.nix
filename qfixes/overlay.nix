@@ -8,6 +8,10 @@ in
 { }
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
   {
+    haskellPackages = prev.haskellPackages.extend (hfinal: hprev: {
+      time-compat = dontCheckHaskell hprev.time-compat;
+    });
+
     libgit2 = dontCheck prev.libgit2;
 
     pixman = prev.pixman.overrideAttrs (oldAttrs: {
@@ -16,6 +20,4 @@ in
         "-Dneon=disabled"
       ];
     });
-
-    time-compat = dontCheck prev.time-compat;
   }

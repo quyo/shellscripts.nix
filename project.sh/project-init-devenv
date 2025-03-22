@@ -21,6 +21,9 @@ let
   qnixpkgs = inputs.qnixpkgs.legacyPackages.${pkgs.stdenv.system};
 in
 {
+  # include secrets from .env file
+  dotenv.enable = true;
+
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 

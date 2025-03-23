@@ -57,13 +57,13 @@
             "miscsh"
             "nixsh"
             "nixbuildsh"
-            "projectsh"
             "quyosh"
             "resticsh"
           ];
 
         flake-pkgs-unstable-mapper = lib.q.mapPkgs
           [
+            "projectsh"
           ];
 
         flake-pkgs =

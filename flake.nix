@@ -79,6 +79,9 @@
           };
       in
       {
+        nixpkgs-stable = pkgs-stable;
+        nixpkgs-unstable = pkgs-unstable;
+
         packages = lib.q.flake.packages "shellscripts" version flake-pkgs-with-bundle { } ./docker.nix;
 
         apps = lib.q.flake.apps flake-pkgs-with-bundle ./apps.nix;

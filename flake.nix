@@ -31,6 +31,14 @@
         default = import ./overlay.nix self;
         qfixes = import qfixes/overlay.nix self;
       };
+
+      overlays-stable = {
+        qfixes = import qfixes/overlay-stable.nix self;
+      };
+
+      overlays-unstable = {
+        qfixes = import qfixes/overlay-unstable.nix self;
+      };
     }
     //
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:
@@ -45,9 +53,11 @@
           qnixpkgs.overlays.qlib
           qnixpkgs.overlays.qshell
         ];
+        overlays-stable = (builtins.attrValues self.overlays-stable) ++ overlays;
+        overlays-unstable = (builtins.attrValues self.overlays-unstable) ++ overlays;
 
-        pkgs-stable = import nixpkgs-stable { inherit overlays system; };
-        pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
+        pkgs-stable = import nixpkgs-stable { inherit system; overlays = overlays-stable; };
+        pkgs-unstable = import nixpkgs-unstable { inherit system; overlays = overlays-unstable; };
 
         flake-pkgs-stable-mapper = lib.q.mapPkgs
           [

@@ -53,8 +53,8 @@
           qnixpkgs.overlays.qlib
           qnixpkgs.overlays.qshell
         ];
-        overlays-stable = (builtins.attrValues self.overlays-stable) ++ overlays;
-        overlays-unstable = (builtins.attrValues self.overlays-unstable) ++ overlays;
+        overlays-stable = (builtins.attrValues self.overlays-stable) ++ [ qnixpkgs.overlays-stable.qfixes ] ++ overlays;
+        overlays-unstable = (builtins.attrValues self.overlays-unstable) ++ [ qnixpkgs.overlays-unstable.qfixes ] ++ overlays;
 
         pkgs-stable = import nixpkgs-stable { inherit system; overlays = overlays-stable; };
         pkgs-unstable = import nixpkgs-unstable { inherit system; overlays = overlays-unstable; };

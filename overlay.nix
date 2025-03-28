@@ -51,8 +51,7 @@ in
 
 with final; {
 
-  cachixsh = mkShellscriptDerivation ./cachix.sh ({ inherit findutils git jq nix openssh; }
-    // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit cachix; });
+  cachixsh = mkShellscriptDerivation ./cachix.sh { inherit cachix findutils git jq nix openssh; };
   dockersh = mkShellscriptDerivation ./docker.sh { inherit coreutils git nix openssh; };
   matrixsh = mkShellscriptDerivation ./matrix.sh ({ inherit coreutils gnused less; }
     // lib.optionalAttrs (stdenv.hostPlatform.isAarch32 == false) { inherit httpie; });

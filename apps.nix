@@ -48,13 +48,17 @@ let
     nix-info = { type = "app"; program = "${nixsh}/bin/nix-info"; };
     nix-list-packages = { type = "app"; program = "${nixsh}/bin/nix-list-packages"; };
     nix-list-subpackages = { type = "app"; program = "${nixsh}/bin/nix-list-subpackages"; };
+    nix-profile-update = { type = "app"; program = "${nixsh}/bin/nix-profile-update"; };
+    nix-profile-upgrade = { type = "app"; program = "${nixsh}/bin/nix-profile-upgrade"; };
     nix-search = { type = "app"; program = "${nixsh}/bin/nix-search"; };
     nix-setup-userscope-cocalc = { type = "app"; program = "${nixsh}/bin/nix-setup-userscope-cocalc"; };
     nix-store-repair = { type = "app"; program = "${nixsh}/bin/nix-store-repair"; };
     nix-system-cleanup = { type = "app"; program = "${nixsh}/bin/nix-system-cleanup"; };
-    nix-system-update = { type = "app"; program = "${nixsh}/bin/nix-system-update"; };
     nix-tree-at-buildtime = { type = "app"; program = "${nixsh}/bin/nix-tree-at-buildtime"; };
     nix-tree-at-runtime = { type = "app"; program = "${nixsh}/bin/nix-tree-at-runtime"; };
+    qnixos-update = { type = "app"; program = "${nixsh}/bin/qnixos-update"; };
+    qnixos-upgrade = { type = "app"; program = "${nixsh}/bin/qnixos-upgrade"; };
+    qnixos-cleanup = { type = "app"; program = "${nixsh}/bin/qnixos-cleanup"; };
 
     nixbuild-remote-store = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-remote-store"; };
     nixbuild-shell = { type = "app"; program = "${nixbuildsh}/bin/nixbuild-shell"; };

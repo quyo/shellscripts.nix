@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+
+sudo nix-collect-garbage --delete-older-than 7d

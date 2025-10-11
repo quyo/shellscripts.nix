@@ -75,6 +75,7 @@ with final; {
               miscsh
               nixsh
               nixbuildsh
+              projectsh
               quyosh
               resticsh
             ];
@@ -84,7 +85,6 @@ with final; {
           {
             name = "shellscripts-unstable-${version}";
             paths = with pkgs; [
-              projectsh
             ];
           };
 

@@ -1,56 +1,99 @@
 #!/bin/bash
 
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
 
 # create devshell
 devenv init
 
+
+# add .env, .env.local and .envrc
+cat <<'EOF'> ./.env
+EOF
+
+cat <<'EOF'> ./.env.local
+EOF
+
+cat <<'EOF'> ./.envrc
+#!/usr/bin/env bash
+
+eval "$(devenv direnvrc)"
+
+# `use devenv` supports the same options as the `devenv shell` command.
+#
+# To silence all output, use `--quiet`.
+#
+# Example usage: use devenv --quiet --impure --option services.postgres.enable:bool true
+use devenv
+EOF
+
+
 # initialize git
+cat <<'EOF'>>./.gitignore
+
+# .env
+.env.local
+EOF
+
 git init
 git add .
+
 
 # override devenv.nix and devenv.yaml
 cat <<'EOF'> ./devenv.nix
 { pkgs, lib, config, inputs, ... }:
 
 let
-  # nixpkgs = import inputs.nixpkgs { system = pkgs.stdenv.system; };
-  qnixpkgs = inputs.qnixpkgs.legacyPackages.${pkgs.stdenv.system};
+  # nixpkgs = import inputs.nixpkgs { system = pkgs.stdenv.hostPlatform.system; };
+  qnixpkgs = inputs.qnixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  # include secrets from .env file
   dotenv.enable = true;
-
-  # https://devenv.sh/basics/
-  env.GREET = "devenv";
+  dotenv.filename = [ ".env" ".env.local" ];
 
   # https://devenv.sh/packages/
-  packages = [
-    pkgs.git
-    qnixpkgs.cronic
+  packages = with pkgs; [
+    boxes
+    coreutils
+    lolcat
   ];
+
+  # https://devenv.sh/scripts/
+  scripts.linux-version.exec = ''
+    echo ; uname -a | boxes -d ansi-rounded -p h4v1 | lolcat --freq=0.15 --spread=8
+  '';
+
+  enterShell = ''
+    linux-version
+  '';
+
+  # https://devenv.sh/basics/
+  # env.GREET = "devenv";
+
+  # https://devenv.sh/packages/
+  # packages = [ pkgs.git ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
 
   # https://devenv.sh/processes/
-  # processes.cargo-watch.exec = "cargo-watch";
+  # processes.dev.exec = "${lib.getExe pkgs.watchexec} -n -- ls -la";
 
   # https://devenv.sh/services/
   # services.postgres.enable = true;
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = ''
-    echo hello from $GREET
-  '';
+  # scripts.hello.exec = ''
+  #   echo hello from $GREET
+  # '';
 
-  enterShell = ''
-    hello
-    git --version
-  '';
+  # https://devenv.sh/basics/
+  # enterShell = ''
+  #   hello         # Run scripts directly
+  #   git --version # Use packages
+  # '';
 
   # https://devenv.sh/tasks/
   # tasks = {
@@ -59,10 +102,10 @@ in
   # };
 
   # https://devenv.sh/tests/
-  enterTest = ''
-    echo "Running tests"
-    git --version | grep --color=auto "${pkgs.git.version}"
-  '';
+  # enterTest = ''
+  #   echo "Running tests"
+  #   git --version | grep --color=auto "${pkgs.git.version}"
+  # '';
 
   # https://devenv.sh/git-hooks/
   # git-hooks.hooks.shellcheck.enable = true;
@@ -75,15 +118,24 @@ cat <<'EOF'> ./devenv.yaml
 # yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
 inputs:
   nixpkgs:
+    url: github:NixOS/nixpkgs/nixpkgs-unstable
+  nixpkgs-devenv:
     url: github:cachix/devenv-nixpkgs/rolling
   qnixpkgs:
     url: github:quyo/qnixpkgs
     inputs:
+      nixpkgs-stable:
+        follows: nixpkgs
+      nixpkgs-unstable:
+        follows: nixpkgs
       qnixpkgs:
         follows: qnixpkgs
 
 # If you're using non-OSS software, you can set allowUnfree to true.
 # allowUnfree: true
+
+# If you're not willing to allow unsupported packages:
+# allowUnsupportedSystem: false
 
 # If you're willing to use a package that's vulnerable
 # permittedInsecurePackages:

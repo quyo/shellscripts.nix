@@ -65,6 +65,7 @@ let
 
     project-init = { type = "app"; program = "${projectsh}/bin/project-init"; };
     project-init-caddy = { type = "app"; program = "${projectsh}/bin/project-init-caddy"; };
+    project-init-claude-code = { type = "app"; program = "${projectsh}/bin/project-init-claude-code"; };
     project-init-devenv = { type = "app"; program = "${projectsh}/bin/project-init-devenv"; };
     project-init-jupyter = { type = "app"; program = "${projectsh}/bin/project-init-jupyter"; };
     project-init-minimal = { type = "app"; program = "${projectsh}/bin/project-init-minimal"; };

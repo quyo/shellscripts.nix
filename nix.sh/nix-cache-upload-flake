@@ -5,6 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
+nix build --no-link "$1"
 nix copy \
     --to 's3://nix-cache-quyo-net?profile=nix-cache&region=eu-central-1' \
-    "$(nix path-info --json "$1" | jq -r '.[].path')"
+    "$(nix path-info "$1")"

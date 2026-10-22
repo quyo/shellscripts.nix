@@ -6,6 +6,5 @@ IFS=$'\n\t'
 
 
 nix build --no-link "$1"
-nix path-info --json "$1" \
-  | jq -r 'keys[0]' \
+nix path-info "$1" \
   | cachix push quyo-public
